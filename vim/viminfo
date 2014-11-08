@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/alias
+~MSle0~/snipmate
 
 # Last Substitute Search Pattern:
 ~MSle0&\/home\/john
@@ -284,6 +284,7 @@ $\~
 :'<,'>:s/p>/h3>g
 
 # Search String History (newest to oldest):
+?/snipmate
 ?/alias
 ? \/home\/john
 ?/vim-pathogen/autoload/pathogen.vim
@@ -966,15 +967,21 @@ $\~
 					<p class="location"><i class="fa fa-map-marker"></i>St Thomas</p>                            
 				</div><!--//details-->
 			</div><!--event-item-->
-"1	LINE	0
-	vim/backup
+""1	LINE	0
+	backup
 "2	LINE	0
-	vim/swap
+	swap
 "3	LINE	0
-	vim/undo
+	undo
 "4	LINE	0
-		k
+	vim/backup
 "5	LINE	0
+	vim/swap
+"6	LINE	0
+	vim/undo
+"7	LINE	0
+		k
+"8	LINE	0
 	[submodule "/home/john/dotfiles/vim/bundle/nerdtree"]
 		url = https://github.com/scrooloose/nerdtree.git
 	[submodule "/home/john/dotfiles/vim/bundle/PHP-Indenting-for-VIm"]
@@ -999,17 +1006,10 @@ $\~
 		url = https://github.com/altercation/vim-colors-solarized.git
 	[submodule "/home/john/dotfiles/vim/bundle/vim-pathogen"]
 		url = https://github.com/tpope/vim-pathogen.git
-"6	LINE	0
+"9	LINE	0
 	[submodule "~/dotfiles/vim/bundle/PHP-Indenting-for-VIm"]
 		path = ~/dotfiles/vim/bundle/PHP-Indenting-for-VIm
 		url = https://github.com/2072/PHP-Indenting-for-VIm.git
-"7	LINE	0
-	*~
-"8	LINE	0
-	*~
-"9	LINE	0
-	276
-<|1|K8ZFHnM2n1VR2NEJj2CXgmIb5nQ=|orCDOqMiKjfNF0asRAVJKInTL4U= ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgl/jOqpAK4qWdomvGwpMBzOzv8aNRhkOh1/vZ/zeI9C2rHWUYV7eo+aZxs8lLsm2ekTiXr9ckge9Nf/icJFlhQbkRWiak4qRqnkgUwx4fP/Oaixpsvl4pUviTceKkcvhfInjfhVsDd8Yj7v8eM0c+WpdVhFN57ApN2tJmAxyyfp8gPc=
 "a	LINE	0
 	@extends('layouts.defaultadmin')
 	
@@ -1045,27 +1045,34 @@ $\~
 	              @include('layouts.address')
 	            </span>
 	            </p>
-""-	CHAR	0
-	/
+"-	CHAR	0
+	*
+
+# global variables:
 
 # File marks:
-'0  9  49  ~/dotfiles/.git/config
-'1  1  23  ~/dotfiles/.git/COMMIT_EDITMSG
-'2  1  5  ~/dotfiles/.gitignore
-'3  119  0  ~/.bashrc
-'4  75  48  ~/.bashrc
-'5  2  0  ~/dotfiles/.gitignore
-'6  3  0  ~/dotfiles/vim/.gitignore
-'7  1  0  ~/.vimrc
-'8  1  0  ~/dotfiles/.vimrc
-'9  1  0  ~/dotfiles/.gitmodules
+'0  1  0  ~/dotfiles/vim/backup/.gitignore
+'1  1  0  ~/dotfiles/vim/.gitignore
+'2  1  0  ~/dotfiles/.gitignore
+'3  2  3  ~/dotfiles/.gitignore
+'4  1971  19  ~/.bash_history
+'5  1  4  ~/dotfiles/.git/COMMIT_EDITMSG
+'6  9  49  ~/dotfiles/.git/config
+'7  119  0  ~/.bashrc
+'8  75  48  ~/.bashrc
+'9  1  0  ~/.vimrc
 
 # Jumplist (newest first):
+-'  1  0  ~/dotfiles/vim/backup/.gitignore
+-'  1  0  ~/dotfiles/vim/.gitignore
+-'  1  0  ~/dotfiles/.gitignore
+-'  2  3  ~/dotfiles/.gitignore
+-'  1971  19  ~/.bash_history
+-'  1897  0  ~/.bash_history
+-'  1  0  ~/.bash_history
+-'  1  4  ~/dotfiles/.git/COMMIT_EDITMSG
 -'  9  49  ~/dotfiles/.git/config
 -'  1  0  ~/dotfiles/.git/config
--'  1  23  ~/dotfiles/.git/COMMIT_EDITMSG
--'  1  5  ~/dotfiles/.gitignore
--'  2  0  ~/dotfiles/.gitignore
 -'  119  0  ~/.bashrc
 -'  1  0  ~/.bashrc
 -'  75  48  ~/.bashrc
@@ -1084,9 +1091,6 @@ $\~
 -'  80  5  ~/.bashrc
 -'  79  5  ~/.bashrc
 -'  78  4  ~/.bashrc
--'  3  0  ~/dotfiles/vim/.gitignore
--'  1  0  ~/dotfiles/vim/.gitignore
--'  2  0  ~/dotfiles/vim/.gitignore
 -'  1  0  ~/.vimrc
 -'  1  0  ~/dotfiles/.vimrc
 -'  1  0  ~/dotfiles/.gitmodules
@@ -1154,30 +1158,34 @@ $\~
 -'  24  0  ~/.ssh/config
 -'  25  14  ~/.ssh/config
 -'  20  14  ~/.ssh/config
--'  1  0  ~/.ssh/config
--'  21  11  ~/.ssh/config
--'  22  0  ~/.ssh/config
--'  23  11  ~/.ssh/config
+-'  1971  19  ~/.bash_history
+-'  1  0  ~/dotfiles/vim/.gitignore
+-'  1  0  ~/dotfiles/.gitignore
 
 # History of marks within files (newest to oldest):
 
-> ~/dotfiles/.git/config
-	"	9	49
-	^	9	50
-	.	9	49
-	+	6	0
-	+	9	49
+> ~/dotfiles/vim/backup/.gitignore
+	"	1	0
+	^	1	1
+	.	1	0
+	+	1	0
 
-> ~/dotfiles/.git/COMMIT_EDITMSG
-	"	1	23
-	^	1	24
-	.	1	23
-	+	1	23
+> ~/dotfiles/vim/.gitignore
+	"	1	0
+	.	1	0
+	+	2	9
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
 
 > ~/dotfiles/.gitignore
-	"	1	5
-	^	1	6
-	.	1	5
+	"	1	0
+	^	2	4
+	.	2	3
 	+	5	9
 	+	9	5
 	+	3	13
@@ -1187,21 +1195,26 @@ $\~
 	+	2	6
 	+	2	0
 	+	1	5
+	+	2	3
+
+> ~/.bash_history
+	"	1971	19
+
+> ~/dotfiles/.git/COMMIT_EDITMSG
+	"	1	4
+	^	1	5
+	.	1	4
+	+	1	4
+
+> ~/dotfiles/.git/config
+	"	9	49
+	^	9	50
+	.	9	49
+	+	6	0
+	+	9	49
 
 > ~/.bashrc
 	"	119	0
-
-> ~/dotfiles/vim/.gitignore
-	"	3	0
-	^	1	5
-	.	3	0
-	+	5	9
-	+	1	0
-	+	2	0
-	+	3	0
-	+	1	0
-	+	2	0
-	+	3	0
 
 > ~/.vimrc
 	"	1	0
@@ -3104,29 +3117,3 @@ $\~
 	+	1	0
 	+	1	0
 	+	1	0
-
-> ~/Dropbox/html/aw3229XX/awawebsite/NERD_tree_3
-	"	12	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/Dropbox/html/aw3229XX/awawebsite/app/models/Type.php
-	"	7	0
-	^	7	28
-	.	7	0
-	+	4	0
-	+	6	36
-	+	12	40
-	+	6	9
-	+	9	0
-	+	7	0
-	+	5	0
-	+	4	28
-	+	9	0
-	+	6	38
-	+	8	0
-	+	7	0
