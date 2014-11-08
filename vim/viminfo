@@ -967,7 +967,7 @@ $\~
 					<p class="location"><i class="fa fa-map-marker"></i>St Thomas</p>                            
 				</div><!--//details-->
 			</div><!--event-item-->
-""1	LINE	0
+"1	LINE	0
 	backup
 "2	LINE	0
 	swap
@@ -1045,32 +1045,32 @@ $\~
 	              @include('layouts.address')
 	            </span>
 	            </p>
-"-	CHAR	0
-	*
+""-	CHAR	0
+	viminf*
 
 # global variables:
 
 # File marks:
-'0  1  0  ~/dotfiles/vim/backup/.gitignore
-'1  1  0  ~/dotfiles/vim/.gitignore
-'2  1  0  ~/dotfiles/.gitignore
-'3  2  3  ~/dotfiles/.gitignore
-'4  1971  19  ~/.bash_history
-'5  1  4  ~/dotfiles/.git/COMMIT_EDITMSG
+'0  1  6  ~/dotfiles/vim/.gitignore
+'1  1  25  ~/dotfiles/.git/COMMIT_EDITMSG
+'2  1  0  ~/dotfiles/vim/backup/.gitignore
+'3  1  0  ~/dotfiles/.gitignore
+'4  2  3  ~/dotfiles/.gitignore
+'5  1971  19  ~/.bash_history
 '6  9  49  ~/dotfiles/.git/config
 '7  119  0  ~/.bashrc
 '8  75  48  ~/.bashrc
 '9  1  0  ~/.vimrc
 
 # Jumplist (newest first):
+-'  1  6  ~/dotfiles/vim/.gitignore
+-'  1  25  ~/dotfiles/.git/COMMIT_EDITMSG
 -'  1  0  ~/dotfiles/vim/backup/.gitignore
--'  1  0  ~/dotfiles/vim/.gitignore
 -'  1  0  ~/dotfiles/.gitignore
 -'  2  3  ~/dotfiles/.gitignore
 -'  1971  19  ~/.bash_history
 -'  1897  0  ~/.bash_history
 -'  1  0  ~/.bash_history
--'  1  4  ~/dotfiles/.git/COMMIT_EDITMSG
 -'  9  49  ~/dotfiles/.git/config
 -'  1  0  ~/dotfiles/.git/config
 -'  119  0  ~/.bashrc
@@ -1159,20 +1159,13 @@ $\~
 -'  25  14  ~/.ssh/config
 -'  20  14  ~/.ssh/config
 -'  1971  19  ~/.bash_history
--'  1  0  ~/dotfiles/vim/.gitignore
--'  1  0  ~/dotfiles/.gitignore
 
 # History of marks within files (newest to oldest):
 
-> ~/dotfiles/vim/backup/.gitignore
-	"	1	0
-	^	1	1
-	.	1	0
-	+	1	0
-
 > ~/dotfiles/vim/.gitignore
-	"	1	0
-	.	1	0
+	"	1	6
+	^	1	7
+	.	1	6
 	+	2	9
 	+	1	0
 	+	1	0
@@ -1180,6 +1173,18 @@ $\~
 	+	1	0
 	+	1	0
 	+	1	0
+	+	1	6
+
+> ~/dotfiles/.git/COMMIT_EDITMSG
+	"	1	25
+	^	1	26
+	.	1	25
+	+	1	25
+
+> ~/dotfiles/vim/backup/.gitignore
+	"	1	0
+	^	1	1
+	.	1	0
 	+	1	0
 
 > ~/dotfiles/.gitignore
@@ -1199,12 +1204,6 @@ $\~
 
 > ~/.bash_history
 	"	1971	19
-
-> ~/dotfiles/.git/COMMIT_EDITMSG
-	"	1	4
-	^	1	5
-	.	1	4
-	+	1	4
 
 > ~/dotfiles/.git/config
 	"	9	49
