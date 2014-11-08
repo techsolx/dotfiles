@@ -1049,8 +1049,8 @@ $\~
 	/
 
 # File marks:
-'0  9  36  ~/dotfiles/.git/config
-'1  1  49  ~/dotfiles/.git/COMMIT_EDITMSG
+'0  9  49  ~/dotfiles/.git/config
+'1  1  23  ~/dotfiles/.git/COMMIT_EDITMSG
 '2  1  5  ~/dotfiles/.gitignore
 '3  119  0  ~/.bashrc
 '4  75  48  ~/.bashrc
@@ -1061,9 +1061,9 @@ $\~
 '9  1  0  ~/dotfiles/.gitmodules
 
 # Jumplist (newest first):
--'  9  36  ~/dotfiles/.git/config
+-'  9  49  ~/dotfiles/.git/config
 -'  1  0  ~/dotfiles/.git/config
--'  1  49  ~/dotfiles/.git/COMMIT_EDITMSG
+-'  1  23  ~/dotfiles/.git/COMMIT_EDITMSG
 -'  1  5  ~/dotfiles/.gitignore
 -'  2  0  ~/dotfiles/.gitignore
 -'  119  0  ~/.bashrc
@@ -1162,17 +1162,17 @@ $\~
 # History of marks within files (newest to oldest):
 
 > ~/dotfiles/.git/config
-	"	9	36
-	^	9	37
-	.	9	36
+	"	9	49
+	^	9	50
+	.	9	49
 	+	6	0
-	+	9	36
+	+	9	49
 
 > ~/dotfiles/.git/COMMIT_EDITMSG
-	"	1	49
-	^	1	50
-	.	1	49
-	+	1	49
+	"	1	23
+	^	1	24
+	.	1	23
+	+	1	23
 
 > ~/dotfiles/.gitignore
 	"	1	5
