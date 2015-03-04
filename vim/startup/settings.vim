@@ -40,7 +40,7 @@ set backspace=2
 " my favorite set command show me the numbers
 set number
 " play nice, with nice things
-set nocompatible
+" set nocompatible
 " fill folds with verticle lines
 set fillchars=vert:¦
 " show me one column when folded
@@ -178,4 +178,7 @@ map <leader>n :NERDTreeToggle<CR>
 
 " make snipmate work with html and php
 au BufRead *.php set ft=php.html
-au BufNewFile *.php set ft=php.htmlGt
+au BufNewFile *.php set ft=php.html
+
+" snimpate for laravel
+autocmd FileType php set ft=php.laravel
