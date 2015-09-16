@@ -177,8 +177,8 @@ autocmd VimEnter * call StartUp()
 map <leader>n :NERDTreeToggle<CR>
 
 " make snipmate work with html and php
-au BufRead *.php set ft=php.html
-au BufNewFile *.php set ft=php.html
+au BufRead *.php set ft=php.laravel
+au BufNewFile *.php set ft=php.laravel
 
 " snimpate for laravel
-autocmd FileType php set ft=php.laravel
+"autocmd FileType php set ft=php.laravel
