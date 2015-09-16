@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 /vendor
 /node_modules
 .env
+=======
+config
+>>>>>>> 556139790fbaa03c16765e06157e520e1fd59a41
