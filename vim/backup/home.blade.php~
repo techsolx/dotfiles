@@ -1,0 +1,80 @@
+@extends('layouts.default')
+<body class="home-page">
+@section('content')
+<div class="content container">
+	<div id="promo-slider" class="slider flexslider">
+		<ul class="slides">
+			<li>
+			<img src="assets/images/slides/slide-1.jpg"  alt="" />
+			<p class="flex-caption">
+			<span class="main" >Join us at St Thomas Academy</span>
+			<br />
+			<span class="secondary clearfix" >Experience the benfits of small class sizes</span>
+			</p>
+			</li>
+			<li>
+			<img src="assets/images/slides/slide-2.jpg"  alt="" />
+			<p class="flex-caption">
+			<span class="main" >Come visit our new campus</span>
+			<br />
+			<span class="secondary clearfix" >Our students thrive in a challenging instructional environment</span>
+			</p>
+			</li>
+			<li>
+			<img src="assets/images/slides/slide-3.jpg"  alt="" />
+			<p class="flex-caption">
+			<span class="main" >Experience academic excellence</span>
+			<br />
+			<span class="secondary clearfix" >With our faith based education</span>
+			</p>
+			</li>
+			<li>
+			<img src="assets/images/slides/slide-4.jpg"  alt="" />
+			<p class="flex-caption">
+			<span class="main" >Feel welcome, safe and excited to learn</span>
+			<br />
+			<span class="secondary clearfix" >Using Oregon’s Core Academic Standards</span>
+			</p>
+			</li>
+		</ul><!--//slides-->
+	</div><!--//flexslider-->
+	@include('layouts.closed')
+	@include('layouts.newscarousel')
+	<div class="row cols-wrapper">
+		<div class="col-md-3">
+			@include('layouts.homeevents')
+					</div><!--//col-md-3-->
+		<div class="col-md-6">
+			@include('layouts.videotour')
+		</div>
+		<div class="col-md-3">
+			@include('layouts.quicklinks')
+			@include('layouts.testimonials')
+		</div><!--//col-md-3-->
+	</div><!--//cols-wrapper-->
+	<section class="awards">
+		<div id="awards-carousel" class="awards-carousel carousel slide">
+			<div class="carousel-inner">
+				<div class="item active">
+					<ul class="logos">
+						<li class="col-md-2 col-sm-2 col-xs-4">
+						<a href="{{ URL::to('http://www.advanc-ed.org') }}"><img class="img-responsive" src="{{ asset('assets/images/awards/NWAC-bw-logo.jpg') }}"  alt="NWAC Logo" /></a>
+						</li>
+						<li class="col-md-2 col-sm-2 col-xs-4">
+						<a href="{{ URL::to('http://www.advanc-ed.org/oasis2/u/par/accreditation/summary?institutionId=50309') }}"><img class="img-responsive" src="{{ asset('assets/images/awards/AdvancedEd-bw-logo.jpg') }}"  alt="Advanced ED Logo" /></a>
+						</li>
+					</ul><!--//slides-->
+				</div><!--//item-->
+			</div><!--//carousel-inner-->
+			<a class="left carousel-control" href="#awards-carousel" data-slide="prev">
+				<i class="fa fa-angle-left"></i>
+			</a>
+			<a class="right carousel-control" href="#awards-carousel" data-slide="next">
+				<i class="fa fa-angle-right"></i>
+			</a>
+
+		</div>
+	</section>
+</div><!--//content-->
+
+@stop

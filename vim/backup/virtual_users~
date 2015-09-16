@@ -1,0 +1,18 @@
+INSERT INTO `mailserver`.`virtual_users` (`id`, `domain_id`, `password` , `email`) VALUES  
+('1', '2', ENCRYPT('Only4J0hn2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'john@techsolx.com'), 
+('2', '3', ENCRYPT('Only4J0hn2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'john@techsolutionsx.com'),
+('3', '4', ENCRYPT('Only4J0hn2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'jmactavish@redmondedfoundation.org'),
+('4', '4', ENCRYPT('Only4Inf02U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'info@redmondedfoundation.org'),
+('5', '2', ENCRYPT('Only4W3b2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'webmaster@techsolx.com'),
+('6', '2', ENCRYPT('Only4P0m2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'postmaster@techsolx.com'),
+('7', '3', ENCRYPT('Only4W3b2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'webmaster@techsolutionsx.com'),
+('8', '2', ENCRYPT('Only4WDr0U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'tsxdropbox@techsolx.com'),
+('9', '2', ENCRYPT('Only4MR@47773X', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'mr47773x@techsolx.com'),
+('10', '2', ENCRYPT('Only4AW@3229X', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'aw3229x@techsolx.com'),
+('11', '2', ENCRYPT('Only4B!l2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'billing@techsolx.com'),
+('12', '2', ENCRYPT('Only4G!t2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'github@techsolx.com'),
+('13', '3', ENCRYPT('Only4B!l2U$3', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'billing@techsolutionsx.com'),
+('14', '4', ENCRYPT('Only4Allen0715', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'ahudson@redmondedfoundation.org'),
+('15', '4', ENCRYPT('Only4Jason3539', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'jmooney@redmondedfoundation.org'),
+('16', '4', ENCRYPT('Only4Leslie2545', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'lpovey@redmondedfoundation.org'),
+('17', '4', ENCRYPT('Only4Marisol1886', CONCAT('$6$', SUBSTRING(SHA(RAND()), -16))), 'mbenz@redmondedfoundation.org');

@@ -1,0 +1,79 @@
+<nav class="main-nav" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button><!--//nav-toggle-->
+		</div><!--//navbar-header-->            
+		<div class="navbar-collapse collapse" id="navbar-collapse">
+			<ul class="nav navbar-nav">
+				@if (Sentry::check())
+				<?php    $user = Sentry::getUser(); ?>
+				<li class="active nav-item"><a href="{{ URL::to('/dashboard') }}">{{{ $user->first_name }}}'s DashBoard</a></li>
+				@else
+				<li class="active nav-item"><a href="{{ URL::to('/') }}">Home</a></li>
+				@endif
+				<li class="nav-item dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">About Us <i class="fa fa-angle-down"></i></a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ URL::to('about') }}">About St Thomas</a></li>
+					<li><a href="{{ URL::to('staff') }}">Staff</a></li>
+					<li><a href="{{ URL::to('faq') }}">FAQ</a></li>                                
+					<li><a href="{{ URL::to('tuition') }}">Tuition</a></li> 
+					<li><a href="{{ URL::to('annualreport') }}">Annual Report</a></li> 
+					<li><a href="{{ URL::to('privacy') }}">Privacy Policy</a></li> 
+				</ul>
+				</li><!--//dropdown-->
+				<li class="nav-item dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Academics <i class="fa fa-angle-down"></i></a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ URL::to('commoncore') }}">Oregon State Standards</a></li>
+					<li><a href="{{ URL::to('prekindergarten') }}">PreK</a></li>
+					<li><a href="{{ URL::to('kindergarten') }}">Kindergarten</a></li>
+					<li><a href="{{ URL::to('first') }}">First Grade</a></li>
+					<li><a href="{{ URL::to('secondthird') }}">Second and Third</a></li>
+					<li><a href="{{ URL::to('fourthfifth') }}">Fourth and Fifth</a></li>
+					<li><a href="{{ URL::to('religion') }}">Religion</a></li>
+					<li><a href="{{ URL::to('article') }}">Physical Education</a></li>
+					<li><a href="{{ URL::to('article') }}">Spanish</a></li>
+					<li><a href="{{ URL::to('article') }}">Music</a></li>
+				</ul>
+				</li>
+				<li class="nav-item dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">School Life <i class="fa fa-angle-down"></i></a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ URL::to('gardengrant') }}">Garden Grant</a></li>
+					<li><a href="{{ URL::to('article') }}">Celebrations</a></li>
+					<li><a href="{{ URL::to('news2') }}">Catholic Community Connections</a></li>
+					<li><a href="{{ URL::to('beforeandafterschool') }}">Before/After School Program</a></li>
+					<li><a href="{{ URL::to('calendar') }}">Calendar</a></li>
+				</ul>
+				</li>
+				<li class="nav-item dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Registration <i class="fa fa-angle-down"></i></a>
+				<ul class="dropdown-menu">
+					<li><a href="assets/flyers/2015_2016_Registration_Packet.pdf" target="_blank">Registration Packet</a></li>
+					<li><a href="assets/flyers/2014_2015_Parent_Student_Handbook.pdf" target="_blank">Parent Student Handbook</a></li>
+					<li><a href="assets/flyers/2015_2016_Tuition.pdf" target="_blank" target-"_blank">Tuition Flyer</a></li>
+					<li><a href="assets/flyers/2015_2016_After_School_Contract.pdf" target="_blank">After School Contracts</a></li>
+				</ul>
+				</li>
+				<li class="nav-item dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Giving<i class="fa fa-angle-down"></i></a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ URL::to('polarbear') }}">Polar Bear Fun Run</a></li>
+					<li><a href="{{ URL::to('crabfeed') }}">Crab Feed</a></li>
+					<li><a href="{{ URL::to('support') }}">Support our school</a></li>
+					<li><a href="{{ URL::to('script') }}">Script</a></li>
+				</ul>
+				</li>
+				@if(Sentry::check()) 
+				<li class="badge badge-warning navbar-btn"><a href="{{ URL::to('logout') }}">Logout</a></li>
+				@endif 
+			</ul><!--//nav-->
+		</div><!--//navabr-collapse-->
+	</div><!--//container-->
+</nav><!--//main-nav-->

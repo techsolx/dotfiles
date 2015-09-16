@@ -1,0 +1,74 @@
+# jdm 4/11/14
+## gconnections.net for Diane Hilde
+#
+# keep global stuff outside of server blocks to avoid repetition.
+#
+
+index index.php;
+
+#
+# return 301 if hitting www.
+#
+server {
+  listen 80; 
+  server_name www.redmondeducationfoundation.org;
+  return 301 $scheme://redmondeducationfoundation.org/$request_uri;
+}
+#
+# now go on to site
+#
+server {
+  listen 80; 
+  server_name redmondeducationfoundation.org;
+  root /home/refoundation/public/www;
+#
+# log files go here
+#
+
+  access_log /home/refoundation/public/log/access.log;
+  error_log  /home/refoundation/public/log/error.log;
+#
+# First attempt to serve request as file, then
+# as directory, then fall back to displaying a 404.
+# then clean up requests later to lower server load
+#
+  location / {
+    try_files $uri $uri/ /index.php =404;
+  }
+#
+# don't allow access to .files
+#
+  location ~ /\. {
+    deny all;
+    access_log off;
+    log_not_found off;
+  }
+#
+# don't log access to favicon
+#
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
+#
+# what to do with robots
+#
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+#
+# what to do with php requests 
+#
+  location ~ [^/]\.php(/|$) {
+    fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+    if (!-f $document_root$fastcgi_script_name) {
+      return 404;
+    }
+# use the fastcgi socket
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_index index.php;
+    include fastcgi_params;
+  }
+}

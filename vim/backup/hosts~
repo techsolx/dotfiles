@@ -1,0 +1,10 @@
+127.0.0.1	localhost.localdomain 	localhost
+23.239.2.4  	tsx1.techsolx.com 	tsx1
+2600:3c01::f03c:91ff:fedb:495f tsx1.techsolx.com 	tsx1
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters

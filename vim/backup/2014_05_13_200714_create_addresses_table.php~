@@ -1,0 +1,125 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateAddressesTable extends Migration {
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		// create the type for the address, Farm, Inspector, Plant, Customer, Shipping, etc
+		Schema::create('types', function($table)
+		{
+			$table->increments('id');
+			$table->string('name',15);
+			$table->boolean('active');
+			$table->timestamps();
+		});
+
+		// then start big picture with countries first
+		Schema::create('countries', function($table)
+		{
+			$table->increments('id');
+			$table->string('name', 35);
+			$table->string('country_code', 3)->default('');
+		});
+
+		// then states
+		Schema::create('states', function($table)
+		{
+			$table->increments('id');
+			$table->string('name', 25);
+			// Mexico state code can be 3, US and CN are 2
+			$table->string('abbr', 3);
+			$table->integer('country_id')->unsigned();
+			$table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade');
+		});
+
+		// then districts
+		Schema::create('districts', function($table)
+		{
+			$table->increments('id');
+			$table->string('name', 35);
+			$table->timestamps();
+		});
+
+		// then the city 
+		Schema::create('cities', function($table)
+		{
+			$table->increments('id');
+			$table->string('name', 70);
+			// who to blame field
+			$table->integer('bywho')->unsigned();
+			$table->timestamps();
+		});
+
+		// then post code or zip code
+		Schema::create('postcodes', function($table)
+		{
+			$table->increments('id');
+			$table->string('postcode', 10);
+			$table->integer('bywho')->unsigned();
+			$table->timestamps();
+		});
+
+		// finally the street address itself with fk links to the types and cities
+
+		Schema::create('addresses', function($table)
+		{
+			$table->increments('id');
+			$table->string('address1', 50);
+			$table->string('address2', 50);
+			$table->integer('city_id')->unsigned();
+			$table->foreign('city_id')->references('id')->on('cities')->onUpdate('cascade');
+			$table->integer('district_id')->unsigned();
+			$table->foreign('district_id')->references('id')->on('districts')->onUpdate('cascade');
+			$table->integer('state_id')->unsigned();
+			$table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade');
+			$table->integer('postcode_id')->unsigned();
+			$table->foreign('postcode_id')->references('id')->on('postcodes')->onUpdate('cascade');
+			// not much chance of this but what the heck!
+			$table->integer('country_id')->unsigned();
+			$table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade');
+			$table->string('phone', 20);
+			$table->string('fax', 20);
+			$table->string('website', 50);
+			$table->boolean('active');
+			$table->text('notes');
+			$table->softDeletes();
+			// who to blame field
+			$table->integer('bywho')->unsigned();
+			$table->timestamps();
+		});
+
+		// create pivot tables for address_types in many to many relationships
+		Schema::create('addresses_types', function($table)
+		{ 
+			$table->integer('type_id')->unsigned()->index();
+			$table->foreign('type_id')->references('id')->on('types')->onUpdate('cascade');
+			$table->integer('address_id')->unsigned()->index();
+			$table->foreign('address_id')->references('id')->on('addresses')->onUpdate('cascade');
+		});
+
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('addresses_types');
+		Schema::drop('addresses');
+		Schema::drop('postcodes');
+		Schema::drop('cities');
+		Schema::drop('districts');
+		Schema::drop('states');
+		Schema::drop('countries');
+		Schema::drop('types');
+	}
+}

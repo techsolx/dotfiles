@@ -1,0 +1,94 @@
+Host *
+ServerAliveInterval 20
+Host rh96765wan0
+  User TechSolX
+  Hostname rh96765wan0.dyndns.org
+  Port 51001
+  VisualHostKey yes
+Host rh96765wan1
+  User TechSolX
+  Hostname rh96765wan1.dyndns.org
+  Port 51001
+  VisualHostKey yes
+Host edge
+  User TechSolX
+  Hostname 975house.dyndns.org
+  Port 51001
+  PreferredAuthentications password
+Host mFi
+  User "john@techsolutionsx.com"
+  Hostname 172.16.0.17
+  Port 3322
+  PreferredAuthentications password
+Host hlake1826
+  User root
+  Hostname hlake1826.dyndns.org
+  Port 55555
+  PreferredAuthentications publickey
+Host bc45672x
+  User root
+  Hostname bc45672x.dyndns.org 
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_tsx1g
+  VisualHostKey yes
+Host mr47773xc8
+  User root
+  Hostname mr47773xc8.dyndns.org 
+  Port 51001
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_tsx1g
+  VisualHostKey yes
+Host mr47773xc4
+  User ubnt
+  Hostname mr47773xc4.dyndns.org 
+  Port 51030
+  IdentityFile ~/.ssh/id_rsa_tsx1g
+  VisualHostKey yes
+Host st3942xx
+  User techsolx
+  Hostname st3972xx.dyndns.org 
+  Port 51001
+  IdentityFile ~/.ssh/id_rsa_tsx1g
+  VisualHostKey yes
+Host mrmanager
+  User techsolx
+  Hostname mr47773xc8.dyndns.org 
+  Port 51030
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_tsx1g
+  VisualHostKey yes
+Host mx2
+  User techsolx
+  Hostname mx2.techsolx.com
+  Port 22
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_mx2.pem
+  VisualHostKey yes
+Host net5
+  User techsolx
+  Hostname 975house.dyndns.org
+  Port 51030
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_tsx1
+  VisualHostKey yes
+Host n204apt
+  User techsolx
+  Hostname n204apt.dyndns.org
+  Port 51001
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_tsx1
+  VisualHostKey yes
+Host n204apt_net4
+  User john
+  Hostname n204apt.dyndns.org
+  Port 51055
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_tsx1
+  VisualHostKey yes
+Host kiln1
+  User techsolx
+  Hostname kiln1.projectsinglass.com
+  Port 22
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa_tsx1
+  VisualHostKey yes
