@@ -4,13 +4,12 @@
 
 
 #### Clone into your home directory.
-`git clone git@git.truckstop.com:JohnM/dotfiles.git`
-
-`cd dotfiles`
-
-`chmod +x .make.sh`
-
-`sh .make.sh`
+````
+git clone git@git.truckstop.com:JohnM/dotfiles.git
+cd dotfiles
+chmod +x .make.sh
+sh ./.make.sh
+````
 
 #### Then
 `git submodule init`
