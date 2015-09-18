@@ -12,9 +12,12 @@ sh ./.make.sh
 ````
 
 #### Then
-`git submodule init`
-
-`git submodule update --init --recursive`
+````
+git submodule init
+git submodule update --init --recursive
+````
 
 #### Finally
-`source ~/.bashrc`
+````
+source ~/.bashrc
+````
