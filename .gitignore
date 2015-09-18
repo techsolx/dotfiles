@@ -2,9 +2,9 @@
 ###################################
 .tmp
 viminfo
-vim/undo
-vim/swap
-vim/backup
+vim/undo/
+vim/swap/
+vim/backup/
 .conf
 .cfg
 config

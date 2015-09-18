@@ -1,6 +1,0 @@
-# See man 5 aliases for format
-#
-root: postmaster@techsolx.com
-postmaster:    root
-clamav: root
-abuse: root
