@@ -21,3 +21,8 @@ git submodule update --init --recursive
 ````
 source ~/.bashrc
 ````
+
+#### To update submodules from time to time or after an git pull
+````
+git submodule foreach git pull origin master
+````
