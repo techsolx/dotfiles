@@ -4,7 +4,7 @@
 
 
 #### Clone into your home directory.
-`git clone`
+`git clone git@git.truckstop.com:JohnM/dotfiles.git`
 
 `cd dotfiles`
 
