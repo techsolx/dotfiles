@@ -1,0 +1,16 @@
+# this is to export the aws credentials if any
+# 
+# create a file called aws_config_file in the .ssh directory
+# then chmod 600 .ssh/aws_config_file
+# [default]
+#aws_access_key_id=<your key from IAM Manger at AWS>
+#aws_secret_access_key=<your secret key from IAM Manager at AWS>
+#region=us-east-1
+#
+#[profile test]
+#aws_access_key_id=<your key from IAM Manger at AWS>
+#aws_secret_access_key=<your secret key from IAM Manager at AWS>
+#region=us-west-2
+
+export AWS_CONFIG_FILE=~/.ssh/aws_config_file
+
