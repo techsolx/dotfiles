@@ -100,7 +100,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # AWS Credentials
-if [ -f ~/.bash_aws ]]; then
+if [ -f ~/.bash_aws ]; then
     . ~/.bash_aws
 fi
 
