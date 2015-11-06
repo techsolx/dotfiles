@@ -14,6 +14,9 @@ sh ./.make.sh
 #### Then
 ````
 git submodule init
+````
+or
+````
 git submodule update --init --recursive
 ````
 
