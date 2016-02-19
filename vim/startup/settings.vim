@@ -1,5 +1,8 @@
 "------------------------------------------------------------
 " settings file
+" Enable syntax highlighting
+syntax enable
+syntax on
 " set leader key
 let mapleader=","
 " set encoding to make things look normal
@@ -18,8 +21,7 @@ set ruler
 set incsearch
 " help me by using tab completion on the menu
 set wildmenu
-" use colors on the
-syntax enable
+" 
 set synmaxcol=0
 " uhex to display non-ascii char as hex
 set display=uhex
@@ -40,7 +42,7 @@ set backspace=2
 " my favorite set command show me the numbers
 set number
 " play nice, with nice things
-" set nocompatible
+set nocompatible
 " fill folds with verticle lines
 set fillchars=vert:¦
 " show me one column when folded
