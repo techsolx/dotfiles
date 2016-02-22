@@ -1,4 +1,4 @@
- # .make.sh
+# .make.sh
  # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
  # cd dotfiles
  # chmod +x .make.sh
@@ -53,3 +53,4 @@
  done
      echo "Now linking in tmux."
      ln -s $tmuxdir/$tmuxfiles ~/.$tmuxfiles
+     
