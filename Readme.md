@@ -7,13 +7,15 @@
 ````
 git clone git@git.truckstop.com:JohnM/dotfiles.git
 cd dotfiles
-chmod +x .make.sh
-sh ./.make.sh
+./.make.sh
 ````
 
 #### Then
 ````
 git submodule init
+````
+or
+````
 git submodule update --init --recursive
 ````
 
