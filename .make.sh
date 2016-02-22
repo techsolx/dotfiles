@@ -43,6 +43,7 @@
      mv ~/.$file ~/dotfiles_old/
      echo "Creating symlink to $file in home directory."
      ln -s $Xinitdir/$file ~/.$file
+done
 
  # move any existing bashfiles in homedir to dotfiles_old directory, then create symlinks
  for file in $bashfiles; do
@@ -51,6 +52,6 @@
      echo "Creating symlink to $file in home directory."
      ln -s $bashdir/$file ~/.$file
  done
+ # finish up with tmux files
      echo "Now linking in tmux."
      ln -s $tmuxdir/$tmuxfiles ~/.$tmuxfiles
-     
