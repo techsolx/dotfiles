@@ -54,7 +54,7 @@ URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pix
 !URxvt*boldFont:    -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
 !  - pseudo transparency
 URxvt*shading:    30
-URxvt*transparent:true
+URxvt*transparent:false
 ! cut odd chars
 URxvt.cutchars: "()*,<>[]{}|''"
 
@@ -89,6 +89,7 @@ URxvt.cutchars: "()*,<>[]{}|''"
 !! white dark/light
 *color7:                S_base2
 *color15:               S_base3
+
 ! Compile xft: Attempt to find a visual with the given bit depth;
 ! URxvt*depth: bitdepth
 
