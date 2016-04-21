@@ -145,7 +145,7 @@ fi
 pathadd $HOME/bin
 
 # add ruby gem path for chef if it exists
-pathadd $HOME/.chefdk/gem/ruby/2.1.0
+pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
