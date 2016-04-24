@@ -147,6 +147,9 @@ pathadd $HOME/bin
 # add ruby gem path for chef if it exists
 pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
 
+# grab the path for the new Chef
+eval "$(chef shell-init bash)"
+
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export LC_ALL="en_US.UTF-8"
