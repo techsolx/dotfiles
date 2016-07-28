@@ -2,6 +2,13 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# function to append path
+pathadd() {
+	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+		PATH="$1${PATH:+":$PATH"}"
+	fi
+}
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -132,6 +139,17 @@ if [ -f "${SSH_ENV}" ]; then
 	}
 else
     start_agent;
+fi
+
+# add path for $HOME/bin if it exists
+pathadd $HOME/bin
+
+# add ruby gem path for chef if it exists
+pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
+
+# grab the path for the new Chef if chef is installed
+if command -v chef >/dev/null 2>&1; then
+	eval "$(chef shell-init bash)"
 fi
 
 export VISUAL=vim
