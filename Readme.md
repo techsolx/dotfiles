@@ -5,7 +5,7 @@
 
 #### Clone into your home directory.
 ````
-git clone git@git.truckstop.com:JohnM/dotfiles.git
+git clone the above repo
 cd dotfiles
 ./.make.sh
 ````
