@@ -5,7 +5,7 @@
 
 #### Clone into your home directory.
 ````
-git clone the above repo
+git clone --recursive the above repo
 cd dotfiles
 ./.make.sh
 ````
