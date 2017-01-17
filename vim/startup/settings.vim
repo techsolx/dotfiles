@@ -1,5 +1,9 @@
-"------------------------------------------------------------
-" settings file
+"---------Settings----------
+" watch me for the changes and re-source file
+augroup autosourcing 
+	autocmd!
+	autocmd BufWritePost settings.vim source %
+augroup END
 " Enable syntax highlighting
 syntax enable
 syntax on
@@ -21,7 +25,7 @@ set ruler
 set incsearch
 " help me by using tab completion on the menu
 set wildmenu
-" 
+" Max colums to search for text in 0 = no limit
 set synmaxcol=0
 " uhex to display non-ascii char as hex
 set display=uhex
@@ -82,9 +86,6 @@ set clipboard=unnamed
 "------------------------------------------------------------
 " set confirm
 " set autowriteall
-
-" Better command-line completion
-set wildmenu
 
 " Show partial commands in the last line of the screen
 set showcmd
@@ -175,9 +176,7 @@ autocmd VimEnter * call StartUp()
 " set NERDTree to auto close on open
 " let NERDTreeQuitOnOpen = 1
 
-" map leader n to toggle NERDTree
-map <leader>n :NERDTreeToggle<CR>
-
 " make snipmate work with html and php
 au BufRead *.php set ft=php.laravel
+augroup END
 au BufNewFile *.php set ft=php.laravel
