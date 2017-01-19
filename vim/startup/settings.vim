@@ -165,13 +165,13 @@ if exists("+undofile")
 endif
 
 " start NERDTree if nothing on the edit line
-function! StartUp()                                                                                                                                                                                         
-  if 0 == argc()
-    NERDTree
-  end
-endfunction
+"function! StartUp()                                                                                                                                                                                         
+"  if 0 == argc()
+"    NERDTree
+"  end
+"endfunction
 
-autocmd VimEnter * call StartUp()
+"autocmd VimEnter * call StartUp()
 
 " set NERDTree to auto close on open
 " let NERDTreeQuitOnOpen = 1
