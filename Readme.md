@@ -10,21 +10,16 @@ cd dotfiles
 ./.make.sh
 ````
 
-#### Then
+#### To initalize the plugins for a new install in vim in normal mode type
 ````
-git submodule init
+:PluginInstall
 ````
-or
+#### Or from the command line type
 ````
-git submodule update --init --recursive
-````
-
-#### Finally
-````
-source ~/.bashrc
+vim +PluginInstall +qall
 ````
 
-#### To update submodules from time to time or after an git pull
+#### To update plugins from time to time in vim normal mode
 ````
-git submodule foreach git pull origin master
+:PluginUpdate
 ````
