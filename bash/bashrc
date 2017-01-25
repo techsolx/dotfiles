@@ -1,7 +1,17 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-
+# Check for os type
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		# linux
+		platform='linux'
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # Mac OSX
+		platform='osx'
+elif [[ "$OSTYPE" == "freebsd"* ]]; then
+    # freebsd
+		platform='freebsd'
+fi
 # function to append path
 pathadd() {
 	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
@@ -106,6 +116,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# trying to fix colors in tmux on OSX
+# alias tmux="TERM=screen-256color tmux"
+if [[ $platform == 'osx' ]]; then
+    alias ls='ls -G'
+fi
 # AWS Credentials
 if [ -f ~/.bash_aws ]; then
     . ~/.bash_aws
