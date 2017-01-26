@@ -5,6 +5,7 @@ viminfo
 vim/undo/
 vim/swap/
 vim/backup/
+vim/bundle/
 .conf
 .cfg
 config
