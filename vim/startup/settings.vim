@@ -1,6 +1,7 @@
 "----------Settings----------
 " my favorite set command show me the numbers
 set number
+set relativenumber
 " set encoding to make things look normal
 set enc=utf-8
 " show me the cursor
@@ -11,6 +12,8 @@ set showcmd
 set ruler
 " highlight search as I type
 set incsearch
+" Search down subfolders
+set path+=**
 " help me by using tab completion on the menu
 set wildmenu
 " Max colums to search for text in 0 = no limit
