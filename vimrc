@@ -32,6 +32,8 @@ source ~/.vim/startup/color.vim
 source ~/.vim/startup/settings.vim
 " Load custom mappings
 source ~/.vim/startup/mappings.vim
+" Build up tags
+command! MakeTags !ctags -R .
 " watch me for the changes and re-source file
 augroup autosouring
  autocmd!

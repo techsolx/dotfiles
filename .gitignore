@@ -8,6 +8,7 @@ vim/backup/
 vim/bundle/
 .conf
 .cfg
+.netrwbook
 config
 # OS generated files #
 ######################

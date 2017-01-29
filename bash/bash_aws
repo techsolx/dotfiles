@@ -13,4 +13,3 @@
 #region=us-west-2
 
 export AWS_CONFIG_FILE=~/.ssh/aws_config_file
-
