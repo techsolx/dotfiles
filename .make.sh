@@ -15,6 +15,7 @@ olddir=~/dotfiles_old             # old dotfiles backup directory
 vimfiles="vim vimrc"    # list of files/folders to symlink in homedir
 bashfiles="bashrc profile bash_aliases"    # list of files/folders to symlink in homedir
 tmuxfiles="tmux.conf tmux-osx.conf"
+ctagsfile="ctags"
 Xinit="Xresources xinitrc"		# adding Xresources for urxvt enabled systems
 
 ##########
@@ -52,10 +53,19 @@ for file in $bashfiles; do
     echo "Creating symlink to $file in home directory."
     ln -s $bashdir/$file ~/.$file
 done
-# finish up with tmux files
+
+# tmux files
 for file in $tmuxfiles; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.$file ~/dotfiles_old/
     echo "Creating symlink to $file in home directory."
     ln -s $tmuxdir/$file ~/.$file
+done
+
+# Now do ctags the long way
+for file in $ctagsfile; do
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $dir/$file ~/.$file
 done
