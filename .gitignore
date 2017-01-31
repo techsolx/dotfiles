@@ -10,6 +10,7 @@ vim/bundle/
 .cfg
 .netrwbook
 config
+tags
 # OS generated files #
 ######################
 .DS_Store

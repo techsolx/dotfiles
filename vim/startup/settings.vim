@@ -72,7 +72,7 @@ set vb
 " is unset, this does nothing.
 set t_vb=
 " I need to figure out how to set my tags better
-set tags=~/tags
+set tags=./tags;/
 " use standard clipboard 
 set clipboard=unnamed
 " set split to open right
