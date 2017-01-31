@@ -56,6 +56,7 @@ set history=1000
 " set
 set nolist
 " set up listchars to show me stuff
+set listchars=space:.
 set listchars=tab:▸\
 set listchars=trail:-
 set listchars=extends:>
