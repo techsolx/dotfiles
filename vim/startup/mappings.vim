@@ -15,7 +15,7 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " watch me for the changes and re-source file
-augroup autosouring
- autocmd!
- autocmd BufWritePost mappings.vim source ~/.vimrc
-augroup END
+augroup reload_file " {
+  autocmd!
+    autocmd BufWritePost mappings.vim source $MYVIMRC
+augroup END " }

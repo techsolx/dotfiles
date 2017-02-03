@@ -3,12 +3,17 @@
 --tag-relative=yes
 --exclude=.git
 --exclude=log
+--exclude=Applications
+--exclude=Library
 --exclude=tmp
 --exclude=doc
 --exclude=deps
 --exclude=build
 --exclude=node_modules
+--exclude=dist
+--python-kinds=-iv
 --exclude=public/assets
+--languages=+python,c,ruby
 --languages=-javascript,sql
 --extra=+f
 --append

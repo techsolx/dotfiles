@@ -7,7 +7,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -34,8 +34,9 @@ source ~/.vim/startup/settings.vim
 source ~/.vim/startup/mappings.vim
 " Build up tags
 command! MakeTags !ctags -R .
+
 " watch me for the changes and re-source file
-augroup autosouring
- autocmd!
- autocmd BufWritePost .vimrc source %
-augroup END
+augroup reload_vimrc " {
+  autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
