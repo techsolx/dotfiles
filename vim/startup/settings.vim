@@ -1,6 +1,6 @@
 "----------Settings----------
 " my favorite set command show me the numbers
-set number
+" set number
 set relativenumber
 " set encoding to make things look normal
 set enc=utf-8
@@ -10,6 +10,8 @@ set cursorline
 set showcmd
 " add the ruler row and column
 set ruler
+" highlight all searcheall searches
+set hlsearch
 " highlight search as I type
 set incsearch
 " Search down subfolders
@@ -128,7 +130,7 @@ if exists("+undofile")
 endif
 
 " watch me for the changes and re-source file
-augroup autosouring
- autocmd!
- autocmd BufWritePost settings.vim source % source ~/.vim/vimrc
-augroup END
+augroup reload_file " {
+  autocmd!
+    autocmd BufWritePost settings.vim source $MYVIMRC
+augroup END " }

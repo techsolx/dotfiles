@@ -4,7 +4,7 @@ syntax enable
 set background=dark
 colorscheme solarized
 " watch me for the changes and re-source file
-augroup autosouring
- autocmd!
- autocmd BufWritePost .vimrc source %
-augroup END
+augroup reload_file " {
+  autocmd!
+    autocmd BufWritePost color.vim source $MYVIMRC
+augroup END " }
