@@ -12,9 +12,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-jdaddy'
+Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
 
 " All of your Plugins must be added before the following line
