@@ -44,11 +44,11 @@ set fillchars=vert:¦
 set foldcolumn=1
 " Global settings for all files (but may be overridden in ftplugin).
 " set tabs to this number of spaces
-set tabstop=2
+set tabstop=4
 " let shiftwidth match tabs
-set shiftwidth=2
+set shiftwidth=4
 " softtabs set to negative to match shiftwidth
-set softtabstop=2
+set softtabstop=4
 " no to tabs
 set expandtab
 " highlight 2 colums past the end of textwidth
@@ -58,7 +58,7 @@ set history=1000
 " set
 set nolist
 " set up listchars to show me stuff
-set listchars=space:.
+set listchars=space:␣
 set listchars=tab:▸\
 set listchars=trail:-
 set listchars=extends:>
@@ -128,6 +128,11 @@ if exists("+undofile")
   set undodir+=~/.vim/undo//
   set undofile
 endif
+
+" associate *.mako with yaml filetype
+augroup filetypedetect
+      au BufRead,BufNewFile *.mako setfiletype yaml
+augroup END
 
 " watch me for the changes and re-source file
 augroup reload_file " {
