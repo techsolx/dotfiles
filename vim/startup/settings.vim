@@ -6,6 +6,8 @@ set relativenumber
 set enc=utf-8
 " show me the cursor
 set cursorline
+" hide the buffer
+"set hidden
 " show the command line at the bottom of the screen
 set showcmd
 " add the ruler row and column

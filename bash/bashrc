@@ -161,9 +161,9 @@ pathadd $HOME/bin
 
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
-if command -v chef >/dev/null 2>&1; then
-	eval "$(chef shell-init bash)"
-fi
+#if command -v chef >/dev/null 2>&1; then
+#	eval "$(chef shell-init bash)"
+#fi
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
