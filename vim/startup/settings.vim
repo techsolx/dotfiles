@@ -132,24 +132,26 @@ if exists("+undofile")
 endif
 
 " :: Python ::
-let python_highlight_builtins=1
-let python_highlight_exceptions=1
-let python_highlight_string_formatting=1
-let python_highlight_string_format=1
-let python_highlight_string_templates=1
-let python_highlight_doctests=1
-au BufNewFile,BufRead *.py set tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType python setlocal completeopt-=preview
+"let python_highlight_builtins=1
+"let python_highlight_exceptions=1
+"let python_highlight_string_formatting=1
+"let python_highlight_string_format=1
+"let python_highlight_string_templates=1
+"let python_highlight_doctests=1
+"au BufNewFile,BufRead *.py, *.jinja setfiletype python syntax=python tabstop=4 shiftwidth=4 softtabstop=4
+"autocmd FileType python setlocal completeopt-=preview
 
 " :: Mako Templates ::
-au BufNewFile,BufRead *.mako set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.mako setfiletype yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
 
 " :: JSON ::
-au BufRead,BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2
+au BufRead,BufNewFile *.json setfiletype json syntax=json tabstop=2 shiftwidth=2 softtabstop=2
 
 " :: YAML ::
-au BufRead,BufNewFile *.yaml set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
+au BufRead,BufNewFile *.yaml,*.yml setfiletype yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
 
+" :: jinja ::
+au BufRead,BufNewFile *.jinja,*.jinja2 set ft=python syntax=python
 " watch me for the changes and re-source file
 augroup reload_file " {
   autocmd!
