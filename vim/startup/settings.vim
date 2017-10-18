@@ -1,7 +1,7 @@
 "----------Settings----------
-" my favorite set command show me the numbers
-" set number
+" my favorite set command show me the number
 set relativenumber
+set number
 " set encoding to make things look normal
 set enc=utf-8
 " show me the cursor
@@ -12,11 +12,11 @@ set cursorline
 set showcmd
 " add the ruler row and column
 set ruler
-" highlight all searcheall searches
+" highlight all searcheall searche
 set hlsearch
 " highlight search as I type
 set incsearch
-" Search down subfolders
+" Search down subfolder
 set path+=**
 " help me by using tab completion on the menu
 set wildmenu
@@ -24,7 +24,7 @@ set wildmenu
 set synmaxcol=0
 " uhex to display non-ascii char as hex
 set display=uhex
-" Set abbreviations for alerts
+" Set abbreviations for alert
 set shortmess=aAIsT
 " give me some space 
 set cmdheight=2
@@ -38,24 +38,26 @@ set completeopt=menu
 " backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 set backspace=2
-" play nice, with nice things
+" play nice, with nice thing
 set nocompatible
-" fill folds with verticle lines
+" fill folds with verticle line
 set fillchars=vert:¦
 " show me one column when folded
 set foldcolumn=1
 " Global settings for all files (but may be overridden in ftplugin).
-" set tabs to this number of spaces
+" set tabs to this number of space
 set tabstop=4
-" let shiftwidth match tabs
+" let shiftwidth match tab
 set shiftwidth=4
 " softtabs set to negative to match shiftwidth
 set softtabstop=4
-" no to tabs
+" no to tab
 set expandtab
+" textwidth to 79
+set textwidth=79
 " highlight 2 colums past the end of textwidth
 set colorcolumn=+1,+2
-" save last 1k commands
+" save last 1k command
 set history=1000
 " set
 set nolist
@@ -66,7 +68,7 @@ set listchars=trail:-
 set listchars=extends:>
 set listchars=precedes:<
 set listchars=eol:¬
-" show me 2 lines of status
+" show me 2 lines of statu
 set laststatus=2
 " preferred file type
 set ffs=unix
@@ -84,9 +86,9 @@ set clipboard=unnamed
 set splitright
 " set vsplit to open bottom
 set splitbelow 
-" show long lines if it overlaps
+" show long lines if it overlap
 set display+=lastline
-" Quickly time out on keycodes, but never time out on mappings
+" Quickly time out on keycodes, but never time out on mapping
 set notimeout ttimeout ttimeoutlen=200
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
@@ -131,6 +133,9 @@ if exists("+undofile")
   set undofile
 endif
 
+" flag trailing whitespace
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.vim match BadWhitespace /\s\+$/
+
 " :: Python ::
 "let python_highlight_builtins=1
 "let python_highlight_exceptions=1
@@ -142,13 +147,13 @@ endif
 "autocmd FileType python setlocal completeopt-=preview
 
 " :: Mako Templates ::
-au BufNewFile,BufRead *.mako setfiletype yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.mako set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
 
 " :: JSON ::
-au BufRead,BufNewFile *.json setfiletype json syntax=json tabstop=2 shiftwidth=2 softtabstop=2
+au BufRead,BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2
 
 " :: YAML ::
-au BufRead,BufNewFile *.yaml,*.yml setfiletype yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
+"au BufRead,BufNewFile *.yaml,*.yml set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
 
 " :: jinja ::
 au BufRead,BufNewFile *.jinja,*.jinja2 set ft=python syntax=python

@@ -102,6 +102,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+lh() { ls -al "$@" | grep '^\.'; }
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -119,12 +120,14 @@ fi
 # trying to fix colors in tmux on OSX
 # alias tmux="TERM=screen-256color tmux"
 if [[ $platform == 'osx' ]]; then
+    alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias ls='ls -G'
 fi
+
 # AWS Credentials
-if [ -f ~/.bash_aws ]; then
-    . ~/.bash_aws
-fi
+#if [ -f ~/.bash_aws ]; then
+#    . ~/.bash_aws
+#fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -168,3 +171,7 @@ pathadd $HOME/bin
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export LC_ALL="en_US.UTF-8"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# export PATH="$PATH:$HOME/.rvm/bin"
+pathadd $HOME/.rvm/bin

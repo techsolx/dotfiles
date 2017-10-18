@@ -24,14 +24,15 @@ call vundle#end()            " required
 
 filetype indent plugin on    " required
 
-syntax enable
-syntax on
+syntax enable on
 " set leader key
 let mapleader=","
 " Load custom colors
 source ~/.vim/startup/color.vim
 " Load custom settings
 source ~/.vim/startup/settings.vim
+" Load custom python and c
+source ~/.vim/startup/pythonandc.vim
 " Load custom mappings
 source ~/.vim/startup/mappings.vim
 " Build up tags
