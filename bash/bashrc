@@ -19,6 +19,16 @@ pathadd() {
 	fi
 }
 
+# allow awsudo to get correct env profile
+# requires awsudo and jq
+use-profile() {
+    if [ -x "$(command -v awsudo)" ] && [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+        export $(awsudo $1 | xargs)
+        echo -n "Assumed role: "
+        aws sts get-caller-identity | jq .Arn
+    fi
+}
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
