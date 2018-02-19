@@ -9,4 +9,5 @@ xrdb -merge "${HOME}/.Xresources"
 urxvt -T Terminal &
 
 # Start the window manager
-exec awesome
+#exec awesome
+exec i3
