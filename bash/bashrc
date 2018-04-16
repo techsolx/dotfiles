@@ -170,3 +170,6 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export LC_ALL="en_US.UTF-8"
+
+# kubectl auto completion
+source <(kubectl completion bash)
