@@ -120,11 +120,12 @@ fi
 # alias tmux="TERM=screen-256color tmux"
 if [[ $platform == 'osx' ]]; then
     alias ls='ls -G'
+    pathadd /usr/local/opt/openssl/bin:$PATH
 fi
 # AWS Credentials
-if [ -f ~/.bash_aws ]; then
-    . ~/.bash_aws
-fi
+#if [ -f ~/.bash_aws ]; then
+#    . ~/.bash_aws
+#fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -160,16 +161,22 @@ fi
 pathadd $HOME/bin
 
 # add ruby gem path for chef if it exists
-pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
+#pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
 
 # grab the path for the new Chef if chef is installed
-if command -v chef >/dev/null 2>&1; then
-	eval "$(chef shell-init bash)"
-fi
+#if command -v chef >/dev/null 2>&1; then
+#	eval "$(chef shell-init bash)"
+#fi
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export LC_ALL="en_US.UTF-8"
 
+# awsudo to assume roles
+use-profile() {
+    export $(awsudo $1 | xargs)
+    echo -n "Assumed role: "
+    aws sts get-caller-identity | jq .Arn
+          }
 # kubectl auto completion
 source <(kubectl completion bash)
