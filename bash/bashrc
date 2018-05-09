@@ -78,8 +78,7 @@ fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
+case "$TERM" in xterm*|rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
@@ -179,4 +178,6 @@ use-profile() {
     aws sts get-caller-identity | jq .Arn
           }
 # kubectl auto completion
-source <(kubectl completion bash)
+if [ -x kubectl ]; then
+  source <(kubectl completion bash)
+fi
