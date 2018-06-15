@@ -17,7 +17,12 @@ Plugin 'python-mode/python-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-jdaddy'
 Plugin 'tpope/vim-surround'
+<<<<<<< HEAD
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'python-mode/python-mode'
+=======
 Plugin 'vim-airline/vim-airline'
+>>>>>>> ade8bc23cd2669dbab0efe276815d120d2539bc7
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

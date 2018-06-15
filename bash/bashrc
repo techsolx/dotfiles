@@ -132,6 +132,7 @@ fi
 if [[ $platform == 'osx' ]]; then
     alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias ls='ls -G'
+    pathadd /usr/local/opt/openssl/bin:$PATH
 fi
 
 # AWS Credentials
@@ -172,8 +173,14 @@ fi
 # add path for $HOME/bin if it exists
 pathadd $HOME/bin
 
+# add ruby gem path for chef if it exists
+#pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
+
+# grab the path for the new Chef if chef is installed
+=======
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
+>>>>>>> ade8bc23cd2669dbab0efe276815d120d2539bc7
 #if command -v chef >/dev/null 2>&1; then
 #	eval "$(chef shell-init bash)"
 #fi
@@ -182,6 +189,11 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export LC_ALL="en_US.UTF-8"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-pathadd $HOME/.rvm/bin
+# awsudo to assume roles
+use-profile() {
+    export $(awsudo $1 | xargs)
+    echo -n "Assumed role: "
+    aws sts get-caller-identity | jq .Arn
+          }
+# kubectl auto completion
+source <(kubectl completion bash)

@@ -1,6 +1,7 @@
 # Basic options
 --recurse=yes
 --tag-relative=yes
+--exclude=.
 --exclude=.git
 --exclude=log
 --exclude=Applications
