@@ -157,6 +157,11 @@ au BufRead,BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 soft
 
 " :: jinja ::
 au BufRead,BufNewFile *.jinja,*.jinja2 set ft=python syntax=python
+
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" deletes netrw's buffer once it's hidden (using ':q', for example)
+autocmd FileType netrw setl bufhidden=delete
+
 " watch me for the changes and re-source file
 augroup reload_file " {
   autocmd!
