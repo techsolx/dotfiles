@@ -10,6 +10,11 @@ cd dotfiles
 ./.make.sh
 ````
 
+#### Update the submodules
+````
+git submodule update --init --recursive
+````
+
 #### To initalize the plugins for a new install in vim in normal mode type
 ````
 :PluginInstall

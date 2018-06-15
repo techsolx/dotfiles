@@ -19,6 +19,16 @@ pathadd() {
 	fi
 }
 
+# allow awsudo to get correct env profile
+# requires awsudo and jq
+use-profile() {
+    if [ -x "$(command -v awsudo)" ] && [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+        export $(awsudo $1 | xargs)
+        echo -n "Assumed role: "
+        aws sts get-caller-identity | jq .Arn
+    fi
+}
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -102,6 +112,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+lh() { ls -al "$@" | grep '^\.'; }
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -119,9 +130,11 @@ fi
 # trying to fix colors in tmux on OSX
 # alias tmux="TERM=screen-256color tmux"
 if [[ $platform == 'osx' ]]; then
+    alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias ls='ls -G'
     pathadd /usr/local/opt/openssl/bin:$PATH
 fi
+
 # AWS Credentials
 #if [ -f ~/.bash_aws ]; then
 #    . ~/.bash_aws
@@ -164,6 +177,10 @@ pathadd $HOME/bin
 #pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
 
 # grab the path for the new Chef if chef is installed
+=======
+# grab the path for the new Chef if chef is installed
+# add ruby gem path for chef if it exists
+>>>>>>> ade8bc23cd2669dbab0efe276815d120d2539bc7
 #if command -v chef >/dev/null 2>&1; then
 #	eval "$(chef shell-init bash)"
 #fi

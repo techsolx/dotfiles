@@ -1,4 +1,7 @@
 backup
+tags
+*~
+Session.vim
 viminfo
 .netrwhist
 .tmp
