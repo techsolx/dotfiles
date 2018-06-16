@@ -116,7 +116,7 @@ lh() { ls -al "$@" | grep '^\.'; }
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -177,10 +177,8 @@ pathadd $HOME/bin
 #pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
 
 # grab the path for the new Chef if chef is installed
-=======
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
->>>>>>> ade8bc23cd2669dbab0efe276815d120d2539bc7
 #if command -v chef >/dev/null 2>&1; then
 #	eval "$(chef shell-init bash)"
 #fi
