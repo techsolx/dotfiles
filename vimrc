@@ -11,8 +11,9 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
+Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-jdaddy'
 Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'python-mode/python-mode'
@@ -22,14 +23,15 @@ call vundle#end()            " required
 
 filetype indent plugin on    " required
 
-syntax enable
-syntax on
+syntax enable on
 " set leader key
 let mapleader=","
 " Load custom colors
 source ~/.vim/startup/color.vim
 " Load custom settings
 source ~/.vim/startup/settings.vim
+" Load custom python and c
+source ~/.vim/startup/pythonandc.vim
 " Load custom mappings
 source ~/.vim/startup/mappings.vim
 " Build up tags
