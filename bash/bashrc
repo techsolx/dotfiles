@@ -1,6 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 # Check for os type
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
 		# linux
@@ -12,6 +9,7 @@ elif [[ "$OSTYPE" == "freebsd"* ]]; then
     # freebsd
 		platform='freebsd'
 fi
+
 # function to append path
 pathadd() {
 	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
@@ -20,7 +18,7 @@ pathadd() {
 }
 
 # allow awsudo to get correct env profile
-# requires awsudo and jq
+# requires aws, awsudo and jq
 use-profile() {
     if [ -x "$(command -v awsudo)" ] && [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
         export $(awsudo $1 | xargs)
@@ -32,8 +30,12 @@ use-profile() {
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Some exports I like
+export VISUAL=vim
+export EDITOR="$VISUAL"
+export LC_ALL="en_US.UTF-8"
+
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
@@ -108,24 +110,16 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# Alias definitions.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 lh() { ls -al "$@" | grep '^\.'; }
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # trying to fix colors in tmux on OSX
 # alias tmux="TERM=screen-256color tmux"
@@ -134,11 +128,6 @@ if [[ $platform == 'osx' ]]; then
     alias ls='ls -G'
     pathadd /usr/local/opt/openssl/bin:$PATH
 fi
-
-# AWS Credentials
-#if [ -f ~/.bash_aws ]; then
-#    . ~/.bash_aws
-#fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -177,24 +166,12 @@ pathadd $HOME/bin
 #pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
 
 # grab the path for the new Chef if chef is installed
-# grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
 #if command -v chef >/dev/null 2>&1; then
 #	eval "$(chef shell-init bash)"
 #fi
 
-export VISUAL=vim
-export EDITOR="$VISUAL"
-export LC_ALL="en_US.UTF-8"
-
-# awsudo to assume roles
-use-profile() {
-    export $(awsudo $1 | xargs)
-    echo -n "Assumed role: "
-    aws sts get-caller-identity | jq .Arn
-          }
 # kubectl auto completion
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion bash)
-    exit 0
 fi
