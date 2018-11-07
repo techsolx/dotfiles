@@ -121,11 +121,13 @@ alias l='ls -CF'
 lh() { ls -al "$@" | grep '^\.'; }
 
 # trying to fix colors in tmux on OSX
+# and bash-completion
 # alias tmux="TERM=screen-256color tmux"
 if [[ $platform == 'osx' ]]; then
     alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias ls='ls -G'
     pathadd /usr/local/opt/openssl/bin:$PATH
+    [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -171,12 +173,19 @@ if command -v chef >/dev/null 2>&1; then
 fi
 
 eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-if which which pyenv-virtualenv-init; then
-    eval "$(pyenv virtualenv-init -)"
-fi
 
 # kubectl auto completion
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion bash);
 fi
+
+# pyenv for osx to work
+if [[ $platform == 'osx' ]]; then
+    if command -v pyenv 1>/dev/null 2>&1; then
+      eval "$(pyenv init -)"
+    fi
+    if which pyenv-virtualenv-init; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
+fi
+
