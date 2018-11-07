@@ -172,7 +172,9 @@ if command -v chef >/dev/null 2>&1; then
 	eval "$(chef shell-init bash)"
 fi
 
-eval "$(rbenv init -)"
+if command -v rbenv 1>/dev/null 2>&1; then
+    eval "$(rbenv init -)"
+fi
 
 # kubectl auto completion
 if [ -x "$(command -v kubectl)" ]; then
