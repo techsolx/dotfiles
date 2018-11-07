@@ -166,11 +166,17 @@ pathadd $HOME/bin
 
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
-#if command -v chef >/dev/null 2>&1; then
-#	eval "$(chef shell-init bash)"
-#fi
+if command -v chef >/dev/null 2>&1; then
+	eval "$(chef shell-init bash)"
+fi
+
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+if which which pyenv-virtualenv-init; then
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 # kubectl auto completion
 if [ -x "$(command -v kubectl)" ]; then
-    source <(kubectl completion bash)
+    source <(kubectl completion bash);
 fi
