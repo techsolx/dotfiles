@@ -26,7 +26,7 @@ set synmaxcol=0
 set display=uhex
 " Set abbreviations for alert
 set shortmess=aAIsT
-" give me some space 
+" give me some space
 set cmdheight=2
 " hang it out
 set nowrap
@@ -80,12 +80,12 @@ set vb
 set t_vb=
 " I need to figure out how to set my tags better
 set tags=./tags;/
-" use standard clipboard 
+" use standard clipboard
 set clipboard=unnamed
 " set split to open right
 set splitright
 " set vsplit to open bottom
-set splitbelow 
+set splitbelow
 " show long lines if it overlap
 set display+=lastline
 " Quickly time out on keycodes, but never time out on mapping
@@ -145,6 +145,8 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.vim match BadWhitespace /\s\+$/
 "let python_highlight_doctests=1
 "au BufNewFile,BufRead *.py, *.jinja setfiletype python syntax=python tabstop=4 shiftwidth=4 softtabstop=4
 "autocmd FileType python setlocal completeopt-=preview
+" for python mode
+let g:pymode_python = 'python3'
 
 " :: Mako Templates ::
 au BufNewFile,BufRead *.mako set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
