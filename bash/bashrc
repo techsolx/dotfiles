@@ -1,30 +1,30 @@
 # Check for os type
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-		# linux
-		platform='linux'
+    # linux
+    platform='linux'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Mac OSX
-		platform='osx'
+    platform='osx'
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     # freebsd
-		platform='freebsd'
+    platform='freebsd'
 fi
 
 # function to append path
 pathadd() {
-	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-		PATH="$1${PATH:+":$PATH"}"
-	fi
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1${PATH:+":$PATH"}"
+    fi
 }
 
 # allow awsudo to get correct env profile
 # requires aws, awsudo and jq
 use-profile() {
-    if [ -x "$(command -v awsudo)" ] && [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
-        export $(awsudo $1 | xargs)
-        echo -n "Assumed role: "
-        aws sts get-caller-identity | jq .Arn
-    fi
+if [ -x "$(command -v awsudo)" ] && [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+    export $(awsudo $1 | xargs)
+    echo -n "Assumed role: "
+    aws sts get-caller-identity | jq .Arn
+fi
 }
 
 # If not running interactively, don't do anything
@@ -73,12 +73,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -139,7 +139,7 @@ fi
 
 # ssh-agent so I don't have to keep typing my passphrase
 SSH_ENV=$HOME/.ssh/environment
-  
+
 # start the ssh-agent
 function start_agent {
     echo "Initializing new SSH agent..."
@@ -150,12 +150,12 @@ function start_agent {
     . "${SSH_ENV}" > /dev/null
     /usr/bin/ssh-add
 }
-  
+
 if [ -f "${SSH_ENV}" ]; then
-     . "${SSH_ENV}" > /dev/null
-	 ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-	    start_agent;
-	}
+    . "${SSH_ENV}" > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+}
 else
     start_agent;
 fi
@@ -169,7 +169,7 @@ pathadd $HOME/bin
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
 if command -v chef >/dev/null 2>&1; then
-	eval "$(chef shell-init bash)"
+    eval "$(chef shell-init bash)"
 fi
 
 if command -v rbenv 1>/dev/null 2>&1; then
@@ -182,12 +182,27 @@ if [ -x "$(command -v kubectl)" ]; then
 fi
 
 # pyenv for osx to work
-if [[ $platform == 'osx' ]]; then
-    if command -v pyenv 1>/dev/null 2>&1; then
-      eval "$(pyenv init -)"
-    fi
-    if which pyenv-virtualenv-init; then
-        eval "$(pyenv virtualenv-init -)"
-    fi
+#if [[ $platform == 'osx' ]]; then
+#    if command -v pyenv 1>/dev/null 2>&1; then
+#        eval "$(pyenv init -)"
+#    fi
+#    if which pyenv-virtualenv-init; then
+#        eval "$(pyenv virtualenv-init -)"
+#    fi
+#fi
+
+# pyenv for linux to work
+if [[ $platform == 'linux' ]]; then
+    PYENV_ROOT="$HOME/.pyenv"
+    pathadd $PYENV_ROOT/bin
 fi
 
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+if which pyenv-virtualenv-init; then
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+eval "$(pyenv virtualenv-init -)"
