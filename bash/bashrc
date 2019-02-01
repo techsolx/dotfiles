@@ -42,7 +42,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=3000
+HISTSIZE=5000
 HISTFILESIZE=5000
 
 # check the window size after each command and, if necessary,
@@ -62,8 +62,8 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
+case "$TERM" in xterm-color)
+    color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -161,7 +161,9 @@ else
 fi
 
 # add path for $HOME/bin if it exists
-pathadd $HOME/bin
+if [ -f "$HOME/bin" ]; then
+    pathadd "$HOME/bin"
+fi
 
 # add ruby gem path for chef if it exists
 #pathadd $HOME/.chefdk/gem/ruby/2.1.0/bin
@@ -180,16 +182,6 @@ fi
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion bash);
 fi
-
-# pyenv for osx to work
-#if [[ $platform == 'osx' ]]; then
-#    if command -v pyenv 1>/dev/null 2>&1; then
-#        eval "$(pyenv init -)"
-#    fi
-#    if which pyenv-virtualenv-init; then
-#        eval "$(pyenv virtualenv-init -)"
-#    fi
-#fi
 
 # pyenv for linux to work
 if [[ $platform == 'linux' ]]; then
