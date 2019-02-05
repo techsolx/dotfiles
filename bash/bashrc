@@ -1,29 +1,29 @@
 # Check for os type
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # linux
-    platform='linux'
+  # linux
+  platform='linux'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # Mac OSX
-    platform='osx'
+  # Mac OSX
+  platform='osx'
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
-    # freebsd
-    platform='freebsd'
+  # freebsd
+  platform='freebsd'
 fi
 
 # function to append path
 pathadd() {
-    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-        PATH="$1${PATH:+":$PATH"}"
-    fi
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$1${PATH:+":$PATH"}"
+  fi
 }
 
 # allow awsudo to get correct env profile
 # requires aws, awsudo and jq
 use-profile() {
 if [ -x "$(command -v awsudo)" ] && [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
-    export $(awsudo $1 | xargs)
-    echo -n "Assumed role: "
-    aws sts get-caller-identity | jq .Arn
+  export $(awsudo $1 | xargs)
+  echo -n "Assumed role: "
+  aws sts get-caller-identity | jq .Arn
 fi
 }
 
@@ -58,12 +58,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in xterm-color|screen-256color)
-    color_prompt=yes;;
+  color_prompt=yes
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -72,57 +72,62 @@ esac
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 # Set prompts
 if [[ $platform != 'osx' ]]; then
-    if [ "$color_prompt" = yes ]; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    else
-        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    fi
-    unset color_prompt force_color_prompt
+  if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  fi
+  unset color_prompt force_color_prompt
 fi
 
 if [[ $platform == 'osx' ]]; then
-    if [ "$color_prompt" = yes ]; then
+  if [ "$color_prompt" = yes ]; then
     CLICOLOR=1
-    LSCOLORS=GxFxCxDxBxegedabagaced
+    LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # solarized
+    #   LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd # default linux
+    #   LSCOLORS=GxFxCxDxBxegedabagaced # MacOS default
     PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    else
-        PS1='\u@\h:\w\$ '
-    fi
-    unset color_prompt force_color_prompt
+  else
+    PS1='\u@\h:\w\$ '
+  fi
+  unset color_prompt force_color_prompt
 fi
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+  color_prompt=yes
+  PS1="\[\033]0;\u@\h: \w\007\]bash\\$ "
+  #   PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
+#     *)
+  #         PS1="bash\\$ "
+  #         ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # some more ls aliases
@@ -135,17 +140,17 @@ lh() { ls -al "$@" | grep '^\.'; }
 # and bash-completion
 # alias tmux="TERM=screen-256color tmux"
 if [[ $platform == 'osx' ]]; then
-    alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-    alias ls='ls -G'
-    pathadd /usr/local/opt/openssl/bin:$PATH
-    [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+  alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
+  alias ls='ls -G'
+  pathadd /usr/local/opt/openssl/bin:$PATH
+  [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi
 
 # ssh-agent so I don't have to keep typing my passphrase
@@ -153,27 +158,27 @@ SSH_ENV=$HOME/.ssh/environment
 
 # start the ssh-agent
 function start_agent {
-    echo "Initializing new SSH agent..."
-    # spawn ssh-agent
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add
+  echo "Initializing new SSH agent..."
+  # spawn ssh-agent
+  /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+  echo succeeded
+  chmod 600 "${SSH_ENV}"
+  . "${SSH_ENV}" > /dev/null
+  /usr/bin/ssh-add
 }
 
 if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-}
-else
+  . "${SSH_ENV}" > /dev/null
+  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
     start_agent;
+  }
+else
+  start_agent;
 fi
 
 # add path for $HOME/bin if it exists
 if [ -f "$HOME/bin" ]; then
-    pathadd "$HOME/bin"
+  pathadd "$HOME/bin"
 fi
 
 # add ruby gem path for chef if it exists
@@ -181,27 +186,27 @@ fi
 
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
-if command -v chef >/dev/null 2>&1; then
-    eval "$(chef shell-init bash)"
+if [ -x "$(command -v chef)" ]; then
+  eval "$(chef shell-init bash)"
 fi
 
-if command -v rbenv 1>/dev/null 2>&1; then
-    eval "$(rbenv init -)"
+if [ -x "$(command -v rbenv)" ]; then
+  eval "$(rbenv init -)"
 fi
 
 # kubectl auto completion
 if [ -x "$(command -v kubectl)" ]; then
-    source <(kubectl completion bash);
+  source <(kubectl completion bash);
 fi
 
 # pyenv
 if [ -x "$(command -v pyenv)" ]; then
-    PYENV_ROOT="$HOME/.pyenv"
-    pathadd $PYENV_ROOT/bin
-    eval "$(pyenv init -)"
+  PYENV_ROOT="$HOME/.pyenv"
+  pathadd $PYENV_ROOT/bin
+  eval "$(pyenv init -)"
 fi
 
 if [ -x "$(which pyenv-virtualenv-init)" ]; then
-    eval "$(pyenv virtualenv-init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
