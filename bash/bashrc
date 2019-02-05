@@ -106,14 +106,11 @@ if [[ $platform == 'osx' ]]; then
 fi
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in xterm*|rxvt*)
+case "$TERM" in xterm|rxvt*)
   color_prompt=yes
   PS1="\[\033]0;\u@\h: \w\007\]bash\\$ "
   #   PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
   ;;
-#     *)
-  #         PS1="bash\\$ "
-  #         ;;
 esac
 
 # enable color support of ls and also add handy aliases
