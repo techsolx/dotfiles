@@ -139,7 +139,7 @@ lh() { ls -al "$@" | grep '^\.'; }
 if [[ $platform == 'osx' ]]; then
   alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
   alias ls='ls -G'
-  pathadd /usr/local/opt/openssl/bin:$PATH
+  pathadd /usr/local/opt/openssl/bin
   [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 fi
 
@@ -174,8 +174,8 @@ else
 fi
 
 # add path for $HOME/bin if it exists
-if [ -f "$HOME/bin" ]; then
-  pathadd "$HOME/bin"
+if [ -d "$HOME/bin" ]; then
+  pathadd $HOME/bin
 fi
 
 # add ruby gem path for chef if it exists
@@ -197,13 +197,16 @@ if [ -x "$(command -v kubectl)" ]; then
 fi
 
 # pyenv
-if [ -x "$(command -v pyenv)" ]; then
-  PYENV_ROOT="$HOME/.pyenv"
-  pathadd $PYENV_ROOT/bin
+if [ -d "$HOME/.pyenv" ]; then
+    PYENV_ROOT="$HOME/.pyenv"
+    pathadd $PYENV_ROOT/bin
+fi
+
+if [ -x "$(which pyenv)" ]; then
   eval "$(pyenv init -)"
 fi
 
-if [ -x "$(which pyenv-virtualenv-init)" ]; then
+if [ -x "$(which pyenv virtualenv)" ]; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
