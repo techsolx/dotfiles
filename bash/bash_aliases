@@ -1,4 +1,5 @@
 alias hg="history | grep"
+alias gr="git remote -v"
 alias gs="git status"
 alias gaa="git add ."
 alias gc="git commit -m "
