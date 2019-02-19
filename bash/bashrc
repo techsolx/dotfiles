@@ -219,10 +219,13 @@ if [ -d "$HOME/.pyenv" ]; then
     pathadd $PYENV_ROOT/bin
 fi
 
-if [ -x "$(which pyenv)" ]; then
-    eval "$(pyenv init -)"
-fi
+#if [ -x "$(which pyenv)" ]; then
+#    eval "$(pyenv init -)"
+#fi
+#
+#if [ -x "$(which pyenv virtualenv)" ]; then
+#    eval "$(pyenv virtualenv-init -)"
+#fi
 
-if [ -x "$(which pyenv virtualenv)" ]; then
-    eval "$(pyenv virtualenv-init -)"
-fi
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
