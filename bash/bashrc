@@ -28,6 +28,7 @@ path_append() {
 
 # allow awsudo to get correct env profile
 # requires aws, awsudo and jq
+# assume working role
 awr() {
     if [ -x "$(command -v awsudo)" ] && [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
         export $(awsudo $1 | xargs)
@@ -36,20 +37,24 @@ awr() {
     fi
 }
 
+# list working roles
 lwr() {
     grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//'
 }
 
+# get caller identity
 gci() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
         aws sts get-caller-identity | jq .Arn
     fi
 }
 
+# get ip addresse(s)
 gip() {
     ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
 }
 
+# change up N directories
 cd..() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
 }
