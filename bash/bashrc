@@ -2,15 +2,20 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # linux
     platform='linux'
+    path=""
+    source /etc/environment
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Mac OSX
     platform='osx'
+    path=""
+    source /etc/profile
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     # freebsd
     platform='freebsd'
 fi
 
 # functions to change path
+# [[ ":$PATH:" != *":$HOME/bin:"* ]] && path_prepend $HOME/bin
 path_prepend() {
     for arg in "$@"; do
         if [[ ":${PATH}:" != *":${arg}:"* ]]; then
@@ -170,7 +175,7 @@ alias l='ls -CF'
 if [[ $platform == 'osx' ]]; then
     alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias ls='ls -G'
-    path_prepend /usr/local/opt/openssl/bin
+    path_append /usr/local/opt/openssl/bin
     [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 fi
 
@@ -206,11 +211,11 @@ fi
 
 # add path for $HOME/bin if it exists
 if [ -d "$HOME/bin" ]; then
-    path_prepend $HOME/bin
+    path_append $HOME/bin
 fi
 
 # add ruby gem path for chef if it exists
-#path_prepend $HOME/.chefdk/gem/ruby/2.1.0/bin
+#path_append $HOME/.chefdk/gem/ruby/2.1.0/bin
 
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
