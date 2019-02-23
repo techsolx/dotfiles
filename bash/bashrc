@@ -243,10 +243,6 @@ if [ -d "/opt/inspec/bin" ]; then
     path_prepend /opt/inspec/bin
 fi
 
-# setup pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 # set prompt for .git repos
 #function color_my_prompt {
 #    local __user_and_host="\[\033[01;32m\]\u@\h"
@@ -334,4 +330,8 @@ parse_git_branch () {
 }
 
 PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\[$BASE0\]\t $ \[$RESET\]"
+
+# setup pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
