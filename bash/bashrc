@@ -332,6 +332,10 @@ parse_git_branch () {
 
 PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\[$BASE0\]\t $ \[$RESET\]"
 
+# export gpg tty
+GPG_TTY=$(tty)
+export GPG_TTY
+
 # setup pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
