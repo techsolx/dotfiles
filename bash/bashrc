@@ -44,7 +44,7 @@ awr() {
 
 # list working roles
 lwr() {
-    grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//'
+    grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//' | sort
 }
 
 # get caller identity
@@ -214,8 +214,9 @@ if [ -d "$HOME/bin" ]; then
     path_append $HOME/bin
 fi
 
-# add ruby gem path for chef if it exists
-#path_append $HOME/.chefdk/gem/ruby/2.1.0/bin
+if [ -x "$(command -v ruby)" ]; then
+    path_prepend $HOME/.rbenv/bin
+fi
 
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
@@ -240,7 +241,13 @@ fi
 
 #chef inspec outside of rbenv
 if [ -d "/opt/inspec/bin" ]; then
-    path_prepend /opt/inspec/bin
+    path_append /opt/inspec/bin
+fi
+
+# golang if installed
+if [ -d "/usr/local/go" ]; then
+    GOPATH="$HOME/go"
+    path_prepend /usr/local/go/bin:$GOPATH/bin
 fi
 
 # set prompt for .git repos

@@ -18,6 +18,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'python-mode/python-mode'
 Plugin 'hashivim/vim-terraform'
+Plugin 'editorconfig/editorconfig-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
