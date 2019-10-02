@@ -13,7 +13,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-jdaddy'
+Plugin 'tpope/vim-jdaddy'
 Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'python-mode/python-mode'

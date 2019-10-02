@@ -53,8 +53,15 @@ set shiftwidth=4
 set softtabstop=4
 " no to tab
 set expandtab
-" textwidth to 79
-set textwidth=79
+" textwidth to 79 this bugs me in global settings
+" set textwidth=79
+" no indent after #
+set nosmartindent
+set cindent
+filetype plugin indent on
+set cinkeys-=0#
+set indentkeys-=0#
+autocmd FileType * set cindent "some file types override it
 " highlight 2 colums past the end of textwidth
 set colorcolumn=+1,+2
 " save last 1k command
@@ -143,11 +150,10 @@ let g:pymode_python = 'python3'
 au BufNewFile,BufRead *.mako set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
 
 " :: JSON ::
-au BufRead,BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2
-au BufRead,BufNewFile *.json execute '%!python -m json.tool' | w
+au BufRead,BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+" au BufRead,BufNewFile *.json execute '%!python -m json.tool' | w
 " :: YAML ::
-"au BufRead,BufNewFile *.yaml,*.yml set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
-
+au BufRead,BufNewFile *.yaml,*.yml set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2 expandtab indentkeys-=0# indentkeys-=<:>
 " :: jinja ::
 au BufRead,BufNewFile *.jinja,*.jinja2 set ft=python syntax=python
 

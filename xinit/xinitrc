@@ -6,8 +6,7 @@
 xrdb -merge "${HOME}/.Xresources"
 
 # Start a terminal emulator in the background
-urxvt -T Terminal &
+# urxvt -T Terminal &
 
 # Start the window manager
-#exec awesome
 exec i3

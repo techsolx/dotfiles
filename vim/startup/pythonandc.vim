@@ -29,7 +29,7 @@ fu! Select_c_style()
     if search('^\t', 'n', 150)
         set shiftwidth=8
         set noexpandtab
-    el 
+    el
         set shiftwidth=4
         set expandtab
     en
@@ -46,7 +46,7 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Wrap text after a certain number of characters
-" Python: 79 
+" Python: 79
 " C: 79
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h set textwidth=79
 
