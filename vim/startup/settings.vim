@@ -152,8 +152,10 @@ au BufNewFile,BufRead *.mako set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 soft
 " :: JSON ::
 au BufRead,BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 " au BufRead,BufNewFile *.json execute '%!python -m json.tool' | w
+
 " :: YAML ::
-au BufRead,BufNewFile *.yaml,*.yml set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2 expandtab indentkeys-=0# indentkeys-=<:>
+au! BufRead,BufNewFile *.{yaml,yml} set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2 expandtab indentkeys-=<:>
+
 " :: jinja ::
 au BufRead,BufNewFile *.jinja,*.jinja2 set ft=python syntax=python
 
