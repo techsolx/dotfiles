@@ -214,8 +214,21 @@ if [ -d "$HOME/bin" ]; then
     path_append $HOME/bin
 fi
 
-if [ -x "$(command -v ruby)" ]; then
-    path_prepend $HOME/.rbenv/bin
+# add path for pyenv if using it
+if [ -d "$HOME/.pyenv" ]; then
+    PYENV_ROOT="$HOME/.pyenv"
+    path_prepend $PYENV_ROOT/bin
+fi
+
+# add path for .rbenv if using it
+if [ -d "$HOME/.rbenv" ]; then
+    RBENV_ROOT="$HOME/.rbenv"
+    path_prepend $RBENV_ROOT/bin
+fi
+
+#chef inspec outside of rbenv
+if [ -d "/opt/inspec/bin" ]; then
+    path_append /opt/inspec/bin
 fi
 
 # grab the path for the new Chef if chef is installed
@@ -231,17 +244,6 @@ fi
 # kubectl auto completion
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion bash);
-fi
-
-# pyenv
-if [ -d "$HOME/.pyenv" ]; then
-    PYENV_ROOT="$HOME/.pyenv"
-    path_prepend $PYENV_ROOT/bin
-fi
-
-#chef inspec outside of rbenv
-if [ -d "/opt/inspec/bin" ]; then
-    path_append /opt/inspec/bin
 fi
 
 # golang if installed
@@ -346,4 +348,4 @@ export GPG_TTY
 # setup pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
+eval "$(rbenv init -)"
