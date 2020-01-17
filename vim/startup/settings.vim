@@ -89,6 +89,8 @@ set t_vb=
 set tags=./tags;/
 " use standard clipboard
 set clipboard=unnamed
+" yank Ctl-c to the sytem clipboard
+vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 " set split to open right
 set splitright
 " set vsplit to open bottom
