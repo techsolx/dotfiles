@@ -226,6 +226,11 @@ if [ -d "$HOME/.rbenv" ]; then
     path_prepend $RBENV_ROOT/bin
 fi
 
+# add path for tfenv if using it
+if [ -d "$HOME/.tfenv" ]; then
+    TFENV_ROOT="$HOME/.tfenv"
+    path_prepend $TFENV_ROOT/bin
+fi
 #chef inspec outside of rbenv
 if [ -d "/opt/inspec/bin" ]; then
     path_append /opt/inspec/bin
