@@ -214,26 +214,33 @@ if [ -d "$HOME/bin" ]; then
     path_append $HOME/bin
 fi
 
-# add path for pyenv if using it
-if [ -d "$HOME/.pyenv" ]; then
-    PYENV_ROOT="$HOME/.pyenv"
-    path_prepend $PYENV_ROOT/bin
-fi
-
 # add path for .rbenv if using it
 if [ -d "$HOME/.rbenv" ]; then
     RBENV_ROOT="$HOME/.rbenv"
     path_prepend $RBENV_ROOT/bin
 fi
 
-# add path for tfenv if using it
+# add path for .tfenv if using it
 if [ -d "$HOME/.tfenv" ]; then
     TFENV_ROOT="$HOME/.tfenv"
     path_prepend $TFENV_ROOT/bin
 fi
+
+# add path for pyenv if using it
+if [ -d "$HOME/.pyenv" ]; then
+    PYENV_ROOT="$HOME/.pyenv"
+    path_prepend $PYENV_ROOT/bin
+fi
+
 #chef inspec outside of rbenv
 if [ -d "/opt/inspec/bin" ]; then
     path_append /opt/inspec/bin
+fi
+
+# golang if installed
+if [ -d "/usr/local/go" ]; then
+    GOPATH="$HOME/go"
+    path_append /usr/local/go/bin:$GOPATH/bin
 fi
 
 # grab the path for the new Chef if chef is installed
@@ -249,12 +256,6 @@ fi
 # kubectl auto completion
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion bash);
-fi
-
-# golang if installed
-if [ -d "/usr/local/go" ]; then
-    GOPATH="$HOME/go"
-    path_prepend /usr/local/go/bin:$GOPATH/bin
 fi
 
 # set prompt for .git repos
