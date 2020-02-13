@@ -64,6 +64,17 @@ cd..() {
     cd $(printf "%0.s../" $(seq 1 $1 ));
 }
 
+# list s3 contents
+ls3() {
+    python3 -c "
+exec('''
+from boto3 import client
+conn = client('s3')
+for key in conn.list_objects(Bucket='${1}')['Contents']:
+    print(key['Key'])
+    ''')
+    "
+}
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 

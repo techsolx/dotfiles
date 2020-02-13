@@ -46,11 +46,13 @@ URxvt*matcher.button:  1
 !
 ! Appearance
 !  - use a bitmap font
-URxvt*font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
-URxvt*font1: -xos4-terminus-medium-*-*-*-13-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:13
+!URxvt*font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
+!URxvt*font1: -xos4-terminus-medium-*-*-*-13-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:13
 URxvt*font2: -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:14
 URxvt*font3: -xos4-terminus-medium-*-*-*-15-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:15
-URxvt*boldFont: -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
+!URxvt*boldFont: -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
+!URxvt*boldFont: -xos4-terminus-bold-*-*-*-13-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:13
+URxvt*boldFont: -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:14
 URxvt*italicFont: xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
 URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
 !URxvt*font:        -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
