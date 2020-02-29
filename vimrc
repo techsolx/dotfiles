@@ -37,7 +37,7 @@ source ~/.vim/startup/pythonandc.vim
 " Load custom mappings
 source ~/.vim/startup/mappings.vim
 " Build up tags
-command! MakeTags !ctags -R .
+command! MakeTags !ctags .
 
 " watch me for the changes and re-source file
 augroup reload_vimrc " {
