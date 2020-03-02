@@ -41,22 +41,19 @@ URxvt*urgentOnBell:      true
 ! Extensions
 URxvt*perl-lib:        /usr/lib/Urxvt/perl/
 URxvt*perl-ext-common: default,matcher,searchable-scrollback
+! allow resize of fonts:
+! git clone git@github.com:simmel/urxvt-resize-font.git ~/$HOME/.urxvt/ext/
+urxvt.perl-ext-common: default,tabbed,matcher,resize-font,-tabbed
+!URxvt.perl-ext-common: default,resize-font
+!
 URxvt*urlLauncher:     /usr/bin/firefox
 URxvt*matcher.button:  1
 !
 ! Appearance
 !  - use a bitmap font
-!URxvt*font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
-!URxvt*font1: -xos4-terminus-medium-*-*-*-13-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:13
-URxvt*font2: -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:14
-URxvt*font3: -xos4-terminus-medium-*-*-*-15-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:15
-!URxvt*boldFont: -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
-!URxvt*boldFont: -xos4-terminus-bold-*-*-*-13-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:13
-URxvt*boldFont: -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:14
-URxvt*italicFont: xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
-URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
-!URxvt*font:        -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
-!URxvt*boldFont:    -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
+!URxvt*font: xft:Inconsolata:size=12:antialias=true:hinting=true
+URxvt*font: xft:Terminus:size=8:antialias=true:hinting=true
+
 !  - pseudo transparency
 URxvt*shading:    30
 URxvt*transparent:false
@@ -112,8 +109,6 @@ URxvt.cutchars: "()*,<>[]{}|''"
 
 ! Use the specified colour for the colour value n, where 0-7
 ! URxvt*colorn: colour
-
-! 
 ! URxvt*colorBD: colour
 
 ! Use the specified colour to display bold or italic characters when
@@ -166,10 +161,7 @@ URxvt.cutchars: "()*,<>[]{}|''"
 
 ! Select the fonts to be used. This is a comma separated list of font
 ! URxvt*font: fontlist
-
 ! URxvt*boldFont: fontlist
-
-! 
 ! URxvt*italicFont: fontlist
 
 ! The font list to use for displaying bold, italic or bold italic
