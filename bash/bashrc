@@ -75,6 +75,7 @@ for key in conn.list_objects(Bucket='${1}')['Contents']:
     ''')
     "
 }
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
