@@ -10,3 +10,6 @@ urxvt -T Terminal &
 
 # Start the window manager
 exec i3
+
+# treat CAPS LOCK like esc
+setxkbmap -option caps:escape
