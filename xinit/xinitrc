@@ -12,4 +12,4 @@ urxvt -T Terminal &
 exec i3
 
 # treat CAPS LOCK like esc
-setxkbmap -option caps:escape
+/usr/bin/setxkbmap -option caps:escape

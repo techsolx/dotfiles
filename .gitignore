@@ -1,6 +1,6 @@
 # Folders to ignore for this repo #
 ###################################
-.tmp
+*.tmp
 viminfo
 vim/undo/
 vim/swap/
