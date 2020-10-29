@@ -242,6 +242,7 @@ fi
 if [ -d "$HOME/.pyenv" ]; then
     PYENV_ROOT="$HOME/.pyenv"
     path_prepend $PYENV_ROOT/bin
+    export PYTHON_CONFIGURE_OPTS="--enable-shared"
 fi
 
 #chef inspec outside of rbenv
