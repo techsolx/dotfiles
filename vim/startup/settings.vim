@@ -165,6 +165,10 @@ au BufRead,BufNewFile *.jinja,*.jinja2 set ft=python syntax=python
 " deletes netrw's buffer once it's hidden (using ':q', for example)
 autocmd FileType netrw setl bufhidden=delete
 
+" Run buffer in python using F9
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
 " watch me for the changes and re-source file
 augroup reload_file " {
   autocmd!
