@@ -31,12 +31,12 @@ path_append() {
     done
 }
 
-# allow awsudo to get correct env profile
-# requires aws, awsudo and jq
+# Allow user to set aws profile in env
+# requires aws and jq
 # assume working role
 awr() {
-    if [ -x "$(command -v awsudo)" ] && [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
-        export $(awsudo $1 | xargs)
+    if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+        export AWS_PROFILE=$1
         echo -n "Assumed working role: "
         aws sts get-caller-identity | jq .Arn
     fi
