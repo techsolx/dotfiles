@@ -14,3 +14,5 @@ alias mkubectl='microk8s kubectl'
 alias tg="grep -rn --exclude-dir=.terraform"
 alias xr="xrandr --output HDMI-1 --auto --right-of LVDS-1"
 alias tf="terraform"
+alias k="kubectl"
+complete -F __start_kubectl k
