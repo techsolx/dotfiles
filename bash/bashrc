@@ -189,9 +189,10 @@ if [[ $platform == 'osx' ]]; then
     alias ls='ls -G'
     path_append /usr/local/opt/openssl/bin
 
-    if [ -f "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
-        . $(brew --prefix)/etc/profile.d/bash_completion.sh 
-    fi
+    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+    # from https://formulae.brew.sh/formula/bash-completion@2
+    # Add the following line to your ~/.bash_profile:
+    [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 fi
 
 #bash-completion
