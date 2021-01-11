@@ -182,20 +182,22 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # trying to fix colors in tmux on OSX
-# and bash-completion
 # alias tmux="TERM=screen-256color tmux"
+
+#bash-completion
 if [[ $platform == 'osx' ]]; then
     alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias ls='ls -G'
     path_append /usr/local/opt/openssl/bin
-    [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+    if [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+        . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+    fi
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if [[ $platform == 'linux' ]]; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion 
+    fi
 fi
 
 # ssh-agent so I don't have to keep typing my passphrase
