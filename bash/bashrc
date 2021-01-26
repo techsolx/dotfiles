@@ -54,9 +54,14 @@ gci() {
     fi
 }
 
-# get ip addresse(s)
+# get local ip addresse(s)
 gip() {
     ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+}
+
+# get public ip address
+gpip() {
+    curl https://checkip.amazonaws.com
 }
 
 # change up N directories
