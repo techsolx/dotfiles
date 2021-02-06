@@ -276,14 +276,14 @@ if [ -x "$(command -v rbenv)" ]; then
 fi
 
 # kubectl auto completion
+complete -F __start_kubectl k
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion bash);
-    complete -F __start_kubectl k
 fi
 
 # microk8s kubectl auto completion
-if [ -x "$(command -v 'microk8s kubectl')" ]; then
-    source <(microk8s kubectl completion bash | sed "s/complete -o default -F __start_kubectl kubectl/complete -o default -F __start_kubectl microk8s kubectl/g")
+if [ -x "$(command -v microk8s)" ]; then
+    source <(mk completion bash | sed "s/kubectl/mk/g")
 fi
 
 # set prompt for .git repos
