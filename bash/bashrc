@@ -209,7 +209,7 @@ fi
 #bash-completion
 if [[ $platform == 'linux' ]]; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion 
+        . /usr/share/bash-completion/bash_completion
     fi
 fi
 

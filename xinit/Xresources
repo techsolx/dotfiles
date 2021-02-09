@@ -281,7 +281,7 @@ URxvt.cutchars: "()*,<>[]{}|''"
 ! The characters used as delimiters for double-click word selection
 ! URxvt*cutchars: string
 
-! 
+!
 ! URxvt*{|}
 
 ! OverTheSpot, OffTheSpot, Root; option -pt.
@@ -357,4 +357,3 @@ URxvt.cutchars: "()*,<>[]{}|''"
 
 ! Turn on/off ISO 14755 5.2 mode (default enabled).
 ! URxvt*iso14755_52: boolean
-
