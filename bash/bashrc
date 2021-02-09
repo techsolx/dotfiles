@@ -81,6 +81,12 @@ for key in conn.list_objects(Bucket='${1}')['Contents']:
     "
 }
 
+# make and change to directory
+mkcdir () {
+    mkdir -p -- "$1" &&
+        cd -P -- "$1"
+}
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
