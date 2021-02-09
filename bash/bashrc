@@ -47,11 +47,16 @@ lwr() {
     grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//' | sort
 }
 
-# get caller identity
+# get aws caller identity
 gci() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
         aws sts get-caller-identity | jq .Arn
     fi
+}
+
+# get region from aws
+agr() {
+    aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]'
 }
 
 # get local ip addresse(s)
