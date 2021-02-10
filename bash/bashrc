@@ -271,9 +271,11 @@ if [ -d "/opt/inspec/bin" ]; then
 fi
 
 # golang if installed
-if [ -d "/usr/local/go" ]; then
+if [ -d "$HOME/go" ]; then
     GOPATH="$HOME/go"
-    path_append /usr/local/go/bin:$GOPATH/bin
+    GOROOT="/usr/local/opt/go/libexec"
+    path_append $GOPATH/bin
+    path_append $GOROOT/bin
 fi
 
 # grab the path for the new Chef if chef is installed
