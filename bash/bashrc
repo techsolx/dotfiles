@@ -44,19 +44,24 @@ awr() {
 
 # list working roles
 lwr() {
+    echo -n "List of working roles: "
     grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//' | sort
 }
 
 # get aws caller identity
 gci() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+        echo -n "AWS get caller id: "
         aws sts get-caller-identity | jq .Arn
     fi
 }
 
-# get region from aws
-agr() {
+# get region from aws, using availability zones for ec2
+daz() {
+    if [ -x "$(command -v aws)" ]; then
+    echo -n "Current AWS availibility zone is: "
     aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]'
+    fi
 }
 
 # get local ip addresse(s)
