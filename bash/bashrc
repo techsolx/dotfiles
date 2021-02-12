@@ -59,7 +59,6 @@ gci() {
 # get region from aws, using availability zones for ec2
 daz() {
     if [ -x "$(command -v aws)" ]; then
-    echo -n "Current AWS availibility zone is: "
     aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]'
     fi
 }
