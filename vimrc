@@ -35,7 +35,7 @@ source ~/.vim/startup/color.vim
 " Load custom settings
 source ~/.vim/startup/settings.vim
 " Load custom python and c
-source ~/.vim/startup/pythonandc.vim
+"source ~/.vim/startup/pythonandc.vim
 " Load custom mappings
 source ~/.vim/startup/mappings.vim
 " Build up tags
