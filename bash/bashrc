@@ -56,9 +56,10 @@ gci() {
     fi
 }
 
-# display active region, get using availability zones for ec2
-dar() {
+# describe avability zone, active region, get using availability zones for ec2
+daz() {
     if [ -x "$(command -v aws)" ]; then
+    echo -n "describe-avability-zones: "
     aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]'
     fi
 }
