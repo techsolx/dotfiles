@@ -44,14 +44,14 @@ awr() {
 
 # list working roles
 lwr() {
-    echo -n "List of working roles: "
+    echo -n "List of working roles in ~/.aws/config: "
     grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//' | sort
 }
 
 # get aws caller identity
 gci() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
-        echo -n "AWS get caller id: "
+        echo "aws sts get-caller-identity: "
         aws sts get-caller-identity | jq .Arn
     fi
 }
@@ -59,7 +59,7 @@ gci() {
 # describe avability zone, active region, get using availability zones for ec2
 daz() {
     if [ -x "$(command -v aws)" ]; then
-    echo -n "describe-avability-zones: "
+    echo "aws ec2 describe-avability-zones: "
     aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]'
     fi
 }
