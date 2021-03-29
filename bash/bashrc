@@ -46,8 +46,8 @@ awr() {
 lwr() {
     if [ -x "$(command -v aws)" ]; then
         echo -n "List of working roles in ~/.aws/config: "
-        aws configure list-profiles
-    #    grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//' | sort
+    #   aws configure list-profiles
+        grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//' | sort
     fi
 }
 
