@@ -50,14 +50,6 @@ daz() {
     fi
 }
 
-# get account alias
-gaa() {
-    if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
-        echo "aws iam list-account-aliases: "
-        aws iam list-account-aliases | jq .AccountAliases[0]
-    fi
-}
-
 # get aws caller identity
 gci() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
@@ -74,6 +66,14 @@ gip() {
 # get public ip address
 gpip() {
     curl https://checkip.amazonaws.com
+}
+
+# list account alias
+laa() {
+    if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+        echo "aws iam list-account-aliases: "
+        aws iam list-account-aliases | jq .AccountAliases[0]
+    fi
 }
 
 # list working roles
