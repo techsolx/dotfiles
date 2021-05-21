@@ -42,12 +42,19 @@ awr() {
     fi
 }
 
-# list working roles
-lwr() {
+# describe availability zone, active region, get using availability zones for ec2
+daz() {
     if [ -x "$(command -v aws)" ]; then
-        echo "List of working roles in ~/.aws/config: "
-    #   aws configure list-profiles
-        grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//' | sort
+    echo "aws ec2 describe-availability-zones: "
+    aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]'
+    fi
+}
+
+# get account alias
+gaa() {
+    if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+        echo "aws iam list-account-aliases: "
+        aws iam list-account-aliases | jq .AccountAliases[0]
     fi
 }
 
@@ -56,14 +63,6 @@ gci() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
         echo "aws sts get-caller-identity: "
         aws sts get-caller-identity | jq .Arn
-    fi
-}
-
-# describe availability zone, active region, get using availability zones for ec2
-daz() {
-    if [ -x "$(command -v aws)" ]; then
-    echo "aws ec2 describe-availability-zones: "
-    aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]'
     fi
 }
 
@@ -76,6 +75,16 @@ gip() {
 gpip() {
     curl https://checkip.amazonaws.com
 }
+
+# list working roles
+lwr() {
+    if [ -x "$(command -v aws)" ]; then
+        echo "List of working roles in ~/.aws/config: "
+    #   aws configure list-profiles
+        grep '\[profile' ~/.aws/config | awk '{print $2}' | sed 's/]//' | sort
+    fi
+}
+
 
 # change up N directories
 cd..() {
