@@ -409,7 +409,9 @@ PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\
 GPG_TTY=$(tty)
 export GPG_TTY
 
+# setup rbenv
+eval "$(rbenv init -)"
+
 # setup pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-eval "$(rbenv init -)"
