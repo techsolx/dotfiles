@@ -143,23 +143,23 @@ if exists("+undofile")
 endif
 
 " flag trailing whitespace
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.vim match BadWhitespace /\s\+$/
+au BufRead BufNewFile *.py,*.pyw,*.c,*.h,*.vim match BadWhitespace /\s\+$/
 
 " for python mode
 let g:pymode_python = 'python3'
 
 " :: Mako Templates ::
-au BufNewFile,BufRead *.mako set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile BufRead *.mako set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
 
 " :: JSON ::
-au BufRead,BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-" au BufRead,BufNewFile *.json execute '%!python -m json.tool' | w
+au BufRead BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+" au BufRead BufNewFile *.json execute '%!python -m json.tool' | w
 
 " :: YAML ::
-au! BufRead,BufNewFile *.{yaml,yml} set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2 expandtab indentkeys-=<:>
+au! BufRead BufNewFile *.{yaml,yml} set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2 expandtab indentkeys-=<:>
 
 " :: jinja ::
-au BufRead,BufNewFile *.jinja,*.jinja2 set ft=python syntax=python
+au BufRead BufNewFile *.jinja,*.jinja2 set ft=python syntax=python
 
 " Per default, netrw leaves unmodified buffers open. This autocommand
 " deletes netrw's buffer once it's hidden (using ':q', for example)

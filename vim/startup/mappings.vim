@@ -1,8 +1,8 @@
 "------------Mappings----------
 " map leader ev to edit .vimrc
-map <leader>ev :tabedit $MYVIMRC<cr>
+map <leader>ev :tabedit $MYVIMRC<CR>
 " map leader space to :noh
-map <leader><space> :noh<cr>
+map <leader><space> :noh<CR>
 " remap nolist toggle
 nmap <leader>l :set list!<CR>
 
