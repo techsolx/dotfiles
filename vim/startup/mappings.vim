@@ -5,6 +5,8 @@ map <leader>ev :tabedit $MYVIMRC<CR>
 map <leader><space> :noh<CR>
 " remap nolist toggle
 nmap <leader>l :set list!<CR>
+" remap IndentLinesToggle
+nmap <leader>i :IndentLinesToggle<CR>
 
 "tweaks for netwr browsing
 let g:netrw_banner=0 " disable banner
