@@ -279,6 +279,7 @@ fi
 if [ -d "$HOME/.pyenv" ]; then
     PYENV_ROOT="$HOME/.pyenv"
     path_prepend $PYENV_ROOT/bin
+    eval "$(pyenv init --path)"
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
 fi
 
