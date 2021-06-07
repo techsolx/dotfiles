@@ -317,20 +317,6 @@ if [ -x "$(command -v microk8s)" ]; then
     source <(mk completion bash | sed "s/kubectl/mk/g")
 fi
 
-# set prompt for .git repos
-#function color_my_prompt {
-#    local __user_and_host="\[\033[01;32m\]\u@\h"
-#    local __cur_location="\[\033[01;34m\]\w"
-#    local __git_branch_color="\[\033[31m\]"
-#    #local __git_branch="\`ruby -e \"print (%x{git branch 2> /dev/null}.grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\`"
-#    local __git_branch='`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`'
-#    local __prompt_tail="\[\033[35m\]$"
-#    local __last_color="\[\033[00m\]"
-#    local local __git_dirty='`git rev-parse 2>/dev/null && (git diff --no-ext-diff --quiet --exit-code 2> /dev/null || echo -e \*)`'
-#    export PS1="$__user_and_host $__cur_location $__git_branch_color$__git_branch$__prompt_tail$__last_color "
-#}
-#color_my_prompt
-
 # Sexy Solarized Bash Prompt, inspired by "Extravagant Zsh Prompt"
 # modified from
 # http://seanponeil.com/blog/2012/09/13/sexy-solarized-bash-prompt/
@@ -404,6 +390,12 @@ parse_git_branch () {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
+k8s_info() {
+      k8s_current_context=$(kubectl config current-context 2> /dev/null)
+        if [[ $? -eq 0 ]] ; then echo -e "(${k8s_current_context}) "; fi
+    }
+
+#PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\n\[$YELLOW\]\$(k8s_info)\n\[$BASE0\]\t $ \[$RESET\]"
 PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\[$BASE0\]\t $ \[$RESET\]"
 
 # export gpg tty
