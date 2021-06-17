@@ -216,6 +216,7 @@ alias l='ls -CF'
 
 # trying to fix colors in tmux on OSX
 # alias tmux="TERM=screen-256color tmux"
+
 # some osx stuff...
 if [[ $platform == 'osx' ]]; then
     alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
@@ -223,9 +224,8 @@ if [[ $platform == 'osx' ]]; then
     path_append /usr/local/opt/openssl/bin
 
     export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-    # from https://formulae.brew.sh/formula/bash-completion@2
-    # Add the following line to your ~/.bash_profile:
     [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+    complete -F __start_kubectl k
 fi
 
 #bash-completion
