@@ -18,3 +18,4 @@ alias k="kubectl"
 complete -F __start_kubectl k
 alias kcc="kubectl config use-context"
 alias kgc="kubectl config get-contexts"
+alias kcs="kubectl config set-context --current"
