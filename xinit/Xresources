@@ -51,8 +51,8 @@ URxvt*matcher.button:  1
 !
 ! Appearance
 !  - use a bitmap font
-!URxvt*font: xft:Inconsolata:size=12:antialias=true:hinting=true
-URxvt*font: xft:Terminus:size=8:antialias=true:hinting=true
+URxvt*font: xft:Inconsolata:size=24:antialias=true:hinting=true
+!URxvt*font: xft:Terminus:size=8:antialias=true:hinting=true
 
 !  - pseudo transparency
 URxvt*shading:    30
@@ -92,6 +92,8 @@ URxvt.cutchars: "()*,<>[]{}|''"
 *color7:                S_base2
 *color15:               S_base3
 
+!! fix hi-res screen
+Xft.dpi: 220
 ! Compile xft: Attempt to find a visual with the given bit depth;
 ! URxvt*depth: bitdepth
 
