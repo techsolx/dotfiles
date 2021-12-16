@@ -19,4 +19,5 @@ complete -F __start_kubectl k
 alias kcc="kubectl config use-context"
 alias kgc="kubectl config get-contexts"
 alias kcs="kubectl config set-context --current"
-alias kgi="kubectl get pods -o jsonpath="{..image}" | tr ' ' '\n' | uniq | sort"
+alias kgi="kubectl get pods -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c"
+alias kgia="kubectl get pods -A -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c"
