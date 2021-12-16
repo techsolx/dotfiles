@@ -11,17 +11,18 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-sensible'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'hashivim/vim-packer'
+Plugin 'hashivim/vim-terraform'
+Plugin 'python-mode/python-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-jdaddy'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-obsession'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'python-mode/python-mode'
-Plugin 'hashivim/vim-terraform'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'Yggdroot/indentLine'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'Yggdroot/indentLine'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
