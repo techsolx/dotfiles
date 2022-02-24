@@ -292,7 +292,13 @@ fi
 # golang if installed
 if [ -d "$HOME/go" ]; then
     GOPATH="$HOME/go"
-    GOROOT="/usr/local/opt/go/libexec"
+    if [[ $platform == 'osx' ]]; then
+        GOROOT="/usr/local/opt/go/libexec" #nonstandard location
+        path_append $GOPATH/bin
+        path_append $GOROOT/bin
+    fi
+else [ -d "/usr/local/go" ];
+    GOPATH="/usr/local/go"
     path_append $GOPATH/bin
     path_append $GOROOT/bin
 fi
