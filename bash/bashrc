@@ -411,8 +411,8 @@ PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\
 GPG_TTY=$(tty)
 export GPG_TTY
 
-# remap caps lock to something useful
-if [[ $platform == 'linux' ]]; then
+# remap caps lock to something useful, if a keyboard is installed
+if [[ $platform == 'linux' ]] && [[ "$(command -v lausb)" ]]; then
     setxkbmap -option caps:escape
 fi
 
