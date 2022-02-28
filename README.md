@@ -1,4 +1,4 @@
-### These are my dotfiles
+### These dotfiles slimmed down for the linux workstatoin
 
 #### If you don't know what a dotfile is look [here] (http://askubuntu.com/questions/94780/what-are-dot-files)
 

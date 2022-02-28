@@ -21,7 +21,6 @@ Plugin 'tpope/vim-jdaddy'
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
-Plugin 'ycm-core/YouCompleteMe'
 Plugin 'Yggdroot/indentLine'
 
 " All of your Plugins must be added before the following line
