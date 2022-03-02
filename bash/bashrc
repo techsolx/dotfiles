@@ -411,6 +411,9 @@ PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\
 GPG_TTY=$(tty)
 export GPG_TTY
 
+#set XDG_CONFIG_HOME
+export XDG_CONFIG_HOME=\$HOME/.config
+
 # remap caps lock to something useful, if a keyboard is installed
 if [[ $platform == 'linux' ]] && [[ "$(command -v lausb)" ]]; then
     setxkbmap -option caps:escape
