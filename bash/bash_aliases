@@ -1,24 +1,31 @@
-alias hg="history | grep"
-alias gr="git remote -v"
-alias gs="git status"
-alias gaa="git add ."
-alias gc="git commit -m "
-alias gp="git pull"
-alias gb="git branch"
-alias gco="git checkout "
-alias gpom="git pull origin main"
-alias gpuom="git push origin main"
-alias gpumr="git pull upstream main --rebase"
-alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias gaa='git add .'
+alias gan='aws organizations list-accounts --profile ec-org-read_only | jq'
+alias gb='git branch'
+alias gc='git commit -m '
+alias gco='git checkout '
+alias gl='git log --color --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias gp='git pull'
+alias gpom='git pull origin main'
+alias gpumr='git pull upstream main --rebase'
+alias gpuom='git push origin main'
+alias gr='git remote -v'
+alias grep='grep --color=auto'
+alias gs='git status'
+alias hg='history | grep'
+alias k='kubectl'
+alias kcc='kubectl config use-context'
+alias kcs='kubectl config set-context --current'
+alias kgc='kubectl config get-contexts'
+alias kgcert='k get clusterissuer,certificate,certificaterequest,challenges,orders'
+alias kgi='kubectl get pods -o jsonpath={..image} | tr -s '\''[[:space:]]'\'' '\''\n'\'' | sort | uniq -c'
+alias kgia='kubectl get pods -A -o jsonpath={..image} | tr -s '\''[[:space:]]'\'' '\''\n'\'' | sort | uniq -c'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls --color=auto'
 alias mk='microk8s kubectl'
-alias tg="grep -rn --exclude-dir=.terraform"
-alias xr="xrandr --output HDMI-1 --auto --right-of LVDS-1"
-alias tf="terraform"
-alias k="kubectl"
-complete -F __start_kubectl k
-alias kcc="kubectl config use-context"
-alias kgc="kubectl config get-contexts"
-alias kcs="kubectl config set-context --current"
-alias kgi="kubectl get pods -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c"
-alias kgia="kubectl get pods -A -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c"
-alias gan="aws organizations list-accounts --profile ec-org-read_only | jq"
+alias tf='terraform'
+alias tg='grep -rn --exclude-dir=.terraform'
+alias xr='xrandr --output HDMI-1 --auto --right-of LVDS-1'
