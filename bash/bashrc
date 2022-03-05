@@ -404,8 +404,8 @@ k8s_info() {
         if [[ $? -eq 0 ]] ; then echo -e "(${k8s_current_context}) "; fi
     }
 
-#PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\n\[$YELLOW\]\$(k8s_info)\n\[$BASE0\]\t $ \[$RESET\]"
-PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\[$BASE0\]\t $ \[$RESET\]"
+PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\n\[$YELLOW\]\$(k8s_info)\n\[$BASE0\]\t $ \[$RESET\]"
+#PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\[$BASE0\]\t $ \[$RESET\]"
 
 # export gpg tty
 GPG_TTY=$(tty)
