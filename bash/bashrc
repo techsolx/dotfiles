@@ -233,6 +233,9 @@ fi
 if [[ $platform == 'linux' ]]; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
+        source <(kubectl completion bash)
+        complete -F __start_kubectl k
+        complete -F __start_kubectl kprod
     fi
 fi
 
@@ -400,8 +403,12 @@ parse_git_branch () {
 }
 
 k8s_info() {
-      k8s_current_context=$(kubectl config current-context 2> /dev/null)
-        if [[ $? -eq 0 ]] ; then echo -e "(${k8s_current_context}) "; fi
+      k8s_current_context=$(kubectl --kubeconfig ~/.kube/prod-config config current-context 2> /dev/null)
+        if [[ $? -eq 0 ]] ; then
+            echo -e "(${k8s_current_context}) "
+        else
+            echo -en "\033[1A"
+        fi
     }
 
 PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\n\[$YELLOW\]\$(k8s_info)\n\[$BASE0\]\t $ \[$RESET\]"
