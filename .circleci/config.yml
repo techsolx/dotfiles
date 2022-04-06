@@ -12,7 +12,7 @@ workflows:
 jobs:
   versioning:
     docker:
-      - image: circleci/node:17.6.0
+      - image: circleci/node:17.8.0
     steps:
       - checkout
       - run: npm install semantic-release @semantic-release/changelog @semantic-release/git
