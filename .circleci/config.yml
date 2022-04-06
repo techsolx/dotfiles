@@ -1,15 +1,14 @@
 version: 2.1
 
 workflows:
-  terraform-versioning:
+  dotfile-versioning:
     jobs:
       - versioning:
           filters:
             branches:
               only: main
           context:
-            - ci-cd-vars
-
+              circleci
 jobs:
   versioning:
     docker:
