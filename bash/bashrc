@@ -104,9 +104,18 @@ for key in conn.list_objects(Bucket='${1}')['Contents']:
 }
 
 # make and change to directory
-mkcdir () {
+mkcdir() {
     mkdir -p -- "$1" &&
         cd -P -- "$1"
+}
+
+# quantic back_royal
+back_royal() {
+    if [ -f $HOME/.quanticrc ]; then
+        /bin/bash --init-file $HOME/.quanticrc
+    else
+        echo "$HOME/.quanticrc file not found"
+    fi
 }
 
 # If not running interactively, don't do anything
@@ -418,6 +427,12 @@ k8s_info() {
 PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\n\[$YELLOW\]\$(k8s_info)\n\[$BASE0\]\t $ \[$RESET\]"
 #PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\[$BASE0\]\t $ \[$RESET\]"
 
+# asdf stuff
+if [ -x "$(command -v asdf)" ]; then
+    . /usr/local/opt/asdf/libexec/asdf.sh
+    . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
+fi
+
 # export gpg tty
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -437,3 +452,5 @@ eval "$(rbenv init -)"
 # setup pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+complete -C /usr/local/Cellar/tfenv/2.2.3/versions/1.0.8/terraform terraform
