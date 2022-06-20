@@ -49,7 +49,7 @@ URxvt*matcher.button:  1
 
 ! Appearance
 !  - use a bitmap font
-URxvt*font: xft:Inconsolata:size=10:antialias=true:hinting=true
+URxvt*font: xft:Inconsolata:size=08:antialias=true:hinting=true
 
 !  - pseudo transparency
 URxvt*shading:    30
