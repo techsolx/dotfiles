@@ -431,9 +431,15 @@ PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\
 #PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\[$BASE0\]\t $ \[$RESET\]"
 
 # asdf stuff
-if [ -x "$(command -v asdf)" ]; then
-    . /usr/local/opt/asdf/libexec/asdf.sh
-    . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
+if [[ -x "$(command -v asdf)" ]]; then
+    if [[ $platform == 'osx' && "$(command -v brew)" ]]; then
+        . $(brew --prefix asdf)/libexec/asdf.sh
+        . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+    fi
+    if [[ $platform == 'linux' ]]; then
+        . $HOME/.asdf/asdf.sh
+        . $HOME/.asdf/completions/asdf.bash
+    fi
 fi
 
 # export gpg tty
@@ -441,8 +447,10 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 #set XDG_CONFIG_HOME
-XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CONFIG_HOME
+if [[ $platform == 'linux' ]]; then
+    XDG_CONFIG_HOME="$HOME/.config"
+    export XDG_CONFIG_HOME
+fi
 
 # remap caps lock to something useful, if a keyboard is installed
 if [[ $platform == 'linux' ]] && [[ "$(command -v lausb)" ]]; then
@@ -450,10 +458,14 @@ if [[ $platform == 'linux' ]] && [[ "$(command -v lausb)" ]]; then
 fi
 
 # setup rbenv
-eval "$(rbenv init -)"
+if [[ "$(command -v rbenv)" ]]; then
+    eval "$(rbenv init -)"
+fi
 
 # setup pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [[ "$(command -v pyenv)" ]]; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 complete -C /usr/local/Cellar/tfenv/2.2.3/versions/1.0.8/terraform terraform
