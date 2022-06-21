@@ -238,6 +238,9 @@ if [[ $platform == 'osx' ]]; then
         source <(kubectl completion bash)
         complete -F __start_kubectl k
     fi
+    if [ -d /opt/homebrew/bin ]; then
+        path_append  /opt/homebrew/bin
+    fi
 fi
 
 #bash-completion
