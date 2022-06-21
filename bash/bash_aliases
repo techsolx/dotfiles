@@ -1,7 +1,7 @@
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias gaa='git add .'
-alias gan='aws organizations list-accounts --profile ec-org-read_only | jq'
+alias gan='aws organizations list-accounts --profile org-read_only | jq'
 alias gb='git branch'
 alias gc='git commit -m '
 alias gco='git checkout '

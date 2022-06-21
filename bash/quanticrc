@@ -5,6 +5,10 @@ if [ -x /usr/libexec/path_helper ]; then
 	eval `/usr/libexec/path_helper -s`
 fi
 
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
+	
+fi
 export PATH=$PATH:/usr/local/sbin
 export QUANTIC_DEV_DIR=$PWD
 test -f $QUANTIC_DEV_DIR/bash/back-royal.bash && source $QUANTIC_DEV_DIR/bash/back-royal.bash
