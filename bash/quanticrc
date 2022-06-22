@@ -1,19 +1,19 @@
 # start fresh
+clear
 PATH=""
 
 if [ -x /usr/libexec/path_helper ]; then
-	eval `/usr/libexec/path_helper -s`
+    eval `/usr/libexec/path_helper -s`
 fi
 
 if [ -f $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases
-	
+
 fi
-export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/local/sbin:/opt/homebrew/bin
 export QUANTIC_DEV_DIR=$PWD
 test -f $QUANTIC_DEV_DIR/bash/back-royal.bash && source $QUANTIC_DEV_DIR/bash/back-royal.bash
 if [ -x "$(command -v asdf)" ]; then
-    . /usr/local/opt/asdf/libexec/asdf.sh
-    . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
+    . /opt/homebrew/opt/asdf/libexec/asdf.sh
+    . /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
 fi
-
