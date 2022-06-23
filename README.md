@@ -1,3 +1,6 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/techsolx/dotfiles/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/techsolx/dotfiles/tree/main)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+
 ### These are my dotfiles
 
 #### If you don't know what a dotfile is look [here] (http://askubuntu.com/questions/94780/what-are-dot-files)
