@@ -9,7 +9,7 @@ git clone --recursive the above repo
 ```
 then:
 ```
-cd dotfiles && chmod +x .make.sh && ./.make.sh
+cd dotfiles && chmod +x setup.sh && ./setup.sh
 ```
 
 #### Update the submodules

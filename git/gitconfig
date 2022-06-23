@@ -1,0 +1,19 @@
+[user]
+	name = John MacTavish
+	email = john@techsolx.com
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
+	deleted = log --diff-filter=D --summary
+	p = pull
+	pomr = pull origin main --rebase
+	pumr = pull upstream main --rebase
+	r = remote -v
+	s = status
+[init]
+	defaultBranch = main
+[pull]
+	ff = true
