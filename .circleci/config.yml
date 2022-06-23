@@ -1,19 +1,20 @@
-version: 2.1
-
-workflows:
-  dotfile-versioning:
-    jobs:
-      - versioning:
-          filters:
-            branches:
-              only: main
-          context:
-              circleci
+version: '2.1'
+orbs:
+  node: circleci/node@5.0.2
 jobs:
-  versioning:
+  update-version:
     docker:
-      - image: circleci/node:17.8.0
+      - image: 'cimg/node:current'
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: npm install semantic-release @semantic-release/changelog @semantic-release/git
+      - run: npm install semantic-release/npm @semantic-release/changelog @semantic-release/git
       - run: npx semantic-release --branches main
+workflows:
+  versioning:
+    jobs:
+      - update-version:
+          context:
+            - circleci
