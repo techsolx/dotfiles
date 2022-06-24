@@ -10,8 +10,9 @@ if [ -f $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases
 
 fi
-export PATH=$PATH:/usr/local/sbin:/opt/homebrew/bin
-export QUANTIC_DEV_DIR=$PWD
+#export PATH=$PATH:/usr/local/sbin:/opt/homebrew/bin
+export PATH=:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
+export QUANTIC_DEV_DIR=~/code/back_royal
 test -f $QUANTIC_DEV_DIR/bash/back-royal.bash && source $QUANTIC_DEV_DIR/bash/back-royal.bash
 if [ -x "$(command -v asdf)" ]; then
     . /opt/homebrew/opt/asdf/libexec/asdf.sh
