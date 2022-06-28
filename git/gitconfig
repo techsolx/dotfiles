@@ -6,6 +6,7 @@
 [difftool]
 	prompt = false
 [alias]
+    b = branch
 	d = difftool
 	deleted = log --diff-filter=D --summary
 	p = pull

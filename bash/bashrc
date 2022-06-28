@@ -232,14 +232,17 @@ if [[ $platform == 'osx' ]]; then
     alias ls='ls -G'
     path_append /usr/local/opt/openssl/bin
 
-    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+    if [ -x "$(command -v brew)" ]; then
+        path_prepend $(brew --prefix)/bin:/$(brew --prefix)/sbin
+        if [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+           . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+            export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d"
+        fi
+    fi
+
     if [ -x "$(command -v kubectl)" ]; then
         source <(kubectl completion bash)
         complete -F __start_kubectl k
-    fi
-    if [ -d /opt/homebrew/bin ]; then
-        path_append  /opt/homebrew/bin
     fi
 fi
 
