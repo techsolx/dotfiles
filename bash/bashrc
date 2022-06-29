@@ -239,35 +239,27 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# trying to fix colors in tmux on OSX
-# alias tmux="TERM=screen-256color tmux"
-
 # some osx stuff...like bash_completion
 if [[ $platform == "osx" ]]; then
     alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
+fi
 
-    # brew install location changed for m1 vs intel
-    if [[ $platform == "osx" ]] && [[ $arch == "arm64" ]]; then
-        if [[ -d "/opt/homebrew" ]]; then
-            BREW_PREFIX="$(/opt/homebrew/bin/brew --prefix)"
-        fi
+# brew install location changed for m1 vs intel
+if [[ $platform == "osx" ]] && [[ $arch == "arm64" ]]; then
+    if [[ -d "/opt/homebrew" ]]; then
+        BREW_PREFIX="$(/opt/homebrew/bin/brew --prefix)"
     fi
-    if [[ $platform == "osx" ]] && [[ $arch != "arm64" ]]; then
-        if [[ -d "/usr/local/Homebrew" ]]; then
-            BREW_PREFIX="$(/usr/local/Homebrew/bin/brew --prefix)"
-        fi
+fi
+if [[ $platform == "osx" ]] && [[ $arch != "arm64" ]]; then
+    if [[ -d "/usr/local/Homebrew" ]]; then
+        BREW_PREFIX="$(/usr/local/Homebrew/bin/brew --prefix)"
     fi
-    if [[ $BREW_PREFIX ]]; then
-        path_prepend $BREW_PREFIX/bin:/$BREW_PREFIX/sbin
-        if [ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
-            . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
-            export BASH_COMPLETION_COMPAT_DIR="$BREW_PREFIX/etc/bash_completion.d"
-        fi
-    fi
-
-    if [ -x "$(command -v kubectl)" ]; then
-        source <(kubectl completion bash)
-        complete -F __start_kubectl k
+fi
+if [[ $BREW_PREFIX ]]; then
+    path_prepend $BREW_PREFIX/bin:$BREW_PREFIX/sbin
+    if [ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
+        . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
+        export BASH_COMPLETION_COMPAT_DIR="$BREW_PREFIX/etc/bash_completion.d"
     fi
 fi
 
@@ -275,12 +267,14 @@ fi
 if [[ $platform == "linux" ]]; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
-        if [ -x "$(command -v kubectl)" ]; then
-            source <(kubectl completion bash)
-            complete -F __start_kubectl k
-            complete -F __start_kubectl kprod
-        fi
     fi
+fi
+
+#kubectl bash completion
+if [ -x "$(command -v kubectl)" ]; then
+    source <(kubectl completion bash)
+    complete -F __start_kubectl k
+    complete -F __start_kubectl kprod
 fi
 
 # ssh-agent so I don't have to keep typing my passphrase
