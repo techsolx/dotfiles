@@ -242,26 +242,27 @@ alias l='ls -CF'
 # trying to fix colors in tmux on OSX
 # alias tmux="TERM=screen-256color tmux"
 
-# some osx stuff...
+# some osx stuff...like bash_completion
 if [[ $platform == "osx" ]]; then
     alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
 
     # brew install location changed for m1 vs intel
-    if [[ $platform == "osx" ]] && [[ $arch == "arm64" ]]
-    then
-        if [[ -d "/opt/homebrew" ]]
-        then
+    if [[ $platform == "osx" ]] && [[ $arch == "arm64" ]]; then
+        if [[ -d "/opt/homebrew" ]]; then
             BREW_PREFIX="$(/opt/homebrew/bin/brew --prefix)"
-        elif [[ -d "/usr/local/Homebrew" ]]
-        then
+        fi
+    fi
+    if [[ $platform == "osx" ]] && [[ $arch != "arm64" ]]; then
+        if [[ -d "/usr/local/Homebrew" ]]; then
             BREW_PREFIX="$(/usr/local/Homebrew/bin/brew --prefix)"
         fi
     fi
-    path_prepend $BREW_PREFIX/bin:/$BREW_PREFIX/sbin
-    # bash_completion
-    if [ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
-       . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
-        export BASH_COMPLETION_COMPAT_DIR="$BREW_PREFIX/etc/bash_completion.d"
+    if [[ $BREW_PREFIX ]]; then
+        path_prepend $BREW_PREFIX/bin:/$BREW_PREFIX/sbin
+        if [ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
+            . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
+            export BASH_COMPLETION_COMPAT_DIR="$BREW_PREFIX/etc/bash_completion.d"
+        fi
     fi
 
     if [ -x "$(command -v kubectl)" ]; then
