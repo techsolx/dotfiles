@@ -28,7 +28,7 @@ get_machine_arch() {
 }
 arch=$(get_machine_arch)
 
-echo "$OSTYPE on $arch"
+#echo "$OSTYPE on $arch"
 
 # functions to change path
 # [[ ":$PATH:" != *":$HOME/bin:"* ]] && path_prepend $HOME/bin
@@ -259,7 +259,7 @@ if [[ $BREW_PREFIX ]]; then
     path_prepend $BREW_PREFIX/bin:$BREW_PREFIX/sbin
     if [ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
         . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
-        export BASH_COMPLETION_COMPAT_DIR="$BREW_PREFIX/etc/bash_completion.d"
+#        export BASH_COMPLETION_COMPAT_DIR="$BREW_PREFIX/etc/bash_completion.d"
     fi
 fi
 

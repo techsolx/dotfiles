@@ -1,6 +1,7 @@
 [user]
 	name = John MacTavish
 	email = john@techsolx.com
+	signingkey = john@techsolx.com
 [diff]
 	tool = vimdiff
 [difftool]
