@@ -19,3 +19,7 @@
 	defaultBranch = main
 [pull]
 	ff = true
+[commit]
+	gpgsign = true
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
