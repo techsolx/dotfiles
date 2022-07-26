@@ -74,6 +74,26 @@ gci() {
     fi
 }
 
+# get session token
+gst() {
+    if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+        if [ -z "${PROFILE}" ] && [ -z ${1} ]; then
+            echo "Usage is gst PROFILE"
+            return -1
+        else
+            PROFILE=$1
+            ARN=$(aws configure get role_arn --profile $PROFILE)
+            AWS_CREDS=$(aws sts assume-role --role-arn $ARN --role-session-name session --profile $PROFILE)
+            export AWS_ACCESS_KEY_ID=$(echo $AWS_CREDS | jq -r ".Credentials.AccessKeyId")
+            export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDS | jq -r ".Credentials.SecretAccessKey")
+            export AWS_SESSION_TOKEN=$(echo $AWS_CREDS | jq -r ".Credentials.SessionToken")
+        fi
+        echo "aws sts get-caller-identity: "
+        aws sts get-caller-identity | jq .Arn
+    fi
+}
+
+
 # get local ip addresse(s)
 gip() {
     ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
