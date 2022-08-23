@@ -3,15 +3,16 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # linux
     platform="linux"
     PATH=""
-    source /etc/environment
+    if [ -f /etc/profile ]; then
+        source /etc/profile
+    else
+        source /etc/environment
+    fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Mac OSX
     platform="osx"
     PATH=""
     source /etc/profile
-elif [[ "$OSTYPE" == "freebsd"* ]]; then
-    # freebsd
-    platform="freebsd"
 fi
 
 # distinguish machine arch
