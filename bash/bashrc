@@ -1,18 +1,18 @@
+include() {
+    [[ -f "$1" ]] && source "$1" 2> /dev/null
+}
+
 # Check for os type
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # linux
     platform="linux"
     PATH=""
-    if [ -f /etc/profile ]; then
-        source /etc/profile
-    else
-        source /etc/environment
-    fi
+    include /etc/profile || include /etc/environment
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Mac OSX
     platform="osx"
     PATH=""
-    source /etc/profile
+    inclued /etc/profile
 fi
 
 # distinguish machine arch
@@ -251,9 +251,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+include  ~/.bash_aliases
 
 # some more ls aliases, use these even if bash_alias is missing
 alias ll='ls -alF'
