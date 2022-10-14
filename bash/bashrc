@@ -1,18 +1,18 @@
-include() {
-    [[ -f "$1" ]] && source "$1" 2> /dev/null
-}
+# include() {
+#     [[ -f "$1" ]] && source "$1" 2> /dev/null
+# }
 
 # Check for os type
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     # linux
     platform="linux"
     PATH=""
-    include /etc/profile || include /etc/environment
+    source /etc/environment
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Mac OSX
     platform="osx"
     PATH=""
-    inclued /etc/profile
+    source /etc/profile
 fi
 
 # distinguish machine arch
@@ -40,6 +40,7 @@ path_prepend() {
         fi
     done
 }
+
 path_append() {
     for arg in "$@"; do
         if [[ ":${PATH}:" != *":${arg}:"* ]]; then
@@ -251,7 +252,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Alias definitions.
-include  ~/.bash_aliases
+source  ~/.bash_aliases
 
 # some more ls aliases, use these even if bash_alias is missing
 alias ll='ls -alF'
