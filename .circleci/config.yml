@@ -6,8 +6,8 @@ jobs:
     docker:
       - image: 'cimg/node:current'
         auth:
-          username: $GITHUB_USER
-          password: $GITHUB_PASSWORD
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run: npm install semantic-release/npm @semantic-release/changelog @semantic-release/git
