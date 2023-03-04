@@ -1,7 +1,7 @@
-name: GitHub Actions Release
+name: GitHub Actions Test
 on: [push]
 jobs:
-  Release-Tag:
+  Standard-Tests:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
