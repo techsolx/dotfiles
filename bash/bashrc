@@ -147,15 +147,6 @@ mkcdir() {
         cd -P -- "$1"
 }
 
-# quantic back_royal
-back_royal() {
-    if [ -f $HOME/.quanticrc ]; then
-        /bin/bash --init-file $HOME/.quanticrc
-    else
-        echo "$HOME/.quanticrc file not found"
-    fi
-}
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 

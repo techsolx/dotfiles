@@ -10,11 +10,11 @@
 dir=~/dotfiles               # dotfiles directory
 bashdir=~/dotfiles/bash      # folders are nested
 gitdir=~/dotfiles/git
-tmuxdir=~/dotfiles/tmux      
+tmuxdir=~/dotfiles/tmux
 vimdir=~/dotfiles/vim        # vim directory careful to ln -s .vim first
-Xinitdir=~/dotfiles/xinit    
+Xinitdir=~/dotfiles/xinit
 olddir=~/dotfiles_old        # old dotfiles backup directory
-bashfiles="bashrc bash_profile bash_aliases inputrc quanticrc"    # list of files/folders to symlink in homedir
+bashfiles="bashrc bash_profile bash_aliases inputrc"    # list of files/folders to symlink in homedir
 ctagsfile="ctags"
 gitfiles="gitconfig"
 tmuxfiles="tmux.conf tmux-osx.conf"
