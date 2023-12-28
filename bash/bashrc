@@ -4,22 +4,25 @@
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     platform="linux"
 	source_file="/etc/environment"
-	size=$(du -k "$source_file" | cut -f 1)
-	if [ "$size" == "0" ]; then #Debian
-	   source_file="/etc/profile"
+    if [[ -s $source_file ]]; then # not zero
+        echo "Sourcing $source_file"
+        source $source_file
+    elif source_file="/etc/profile"; then # Debian
+        echo "Sourcing $source_file"
+        source $source_file
+    else
+	    PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 	fi
-    PATH=""
-    source $source_file
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     platform="osx"
     PATH=""
-    source /etc/profile
+    source "/etc/profile"
 fi
 
-# No source_file found, or the above broke the path, set some default
-if [ ${#PATH} == "0" ]; then
-	PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-fi
+## No source_file found, or the above broke the path, set some default
+# if [[ ${#PATH} == "0" ]]; then
+#   PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# fi
 
 # distinguish machine arch
 get_machine_arch() {
