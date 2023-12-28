@@ -486,7 +486,7 @@ if [[ $platform == "linux" ]]; then
 fi
 
 # remap caps lock to something useful, if a keyboard is installed
-if [[ $platform == "linux" ]] && [[ "$(command -v lausb)" ]]; then
+if [[ $platform == "linux" ]] && [[ "$(command -v lsusb)" ]]; then
     setxkbmap -option caps:escape
 fi
 
