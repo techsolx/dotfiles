@@ -321,6 +321,11 @@ if [ -d "$HOME/bin" ]; then
     path_append $HOME/bin
 fi
 
+# add path for $HOME/.local/bin if it exists, pipx requirement
+if [ -d "$HOME/.local/bin" ]; then
+    path_append $HOME/.local/bin
+fi
+
 # add path for .rbenv if using it
 if [ -d "$HOME/.rbenv" ]; then
     RBENV_ROOT="$HOME/.rbenv"
