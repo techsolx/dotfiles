@@ -316,6 +316,13 @@ else
     start_agent;
 fi
 
+# Path Stuff Here
+# docker cli from docker desktop
+if [[ $platform == "osx" ]]; then
+    if [[ -d "/Applications/Docker.app/Contents/Resources/bin" ]]; then
+        path_append /Applications/Docker.app/Contents/Resources/bin
+    fi
+fi
 # add path for $HOME/bin if it exists
 if [ -d "$HOME/bin" ]; then
     path_append $HOME/bin
