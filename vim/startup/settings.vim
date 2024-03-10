@@ -1,4 +1,6 @@
 "----------Settings----------
+" play nice, with nice thing
+set nocompatible
 " my favorite set command show me the number
 set relativenumber
 set number
@@ -38,8 +40,6 @@ set completeopt=menu
 " backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 set backspace=2
-" play nice, with nice thing
-set nocompatible
 " fill folds with verticle line
 set fillchars=vert:¦
 " show me one column when folded
@@ -56,19 +56,18 @@ set expandtab
 " textwidth to 79 this bugs me in global settings
 " set textwidth=79
 " no indent after #
-set nosmartindent
-set cindent
-filetype plugin indent on
-set cinkeys-=0#
-set indentkeys-=0#
-autocmd FileType * set cindent "some file types override it
+"" set nosmartindent
+"" set cindent
+"" set cinkeys-=0#
+"" set indentkeys-=0#
+"" autocmd FileType * set cindent "some file types override it
+"
 " highlight 2 colums past the end of textwidth
 set colorcolumn=+1,+2
 " save last 1k command
 set history=1000
-" set
-set nolist
 " set up listchars to show me stuff
+set nolist
 set listchars=space:␣
 set listchars=tab:▸\
 set listchars=trail:-
@@ -142,32 +141,32 @@ if exists("+undofile")
   set undofile
 endif
 
-" flag trailing whitespace
-au BufRead BufNewFile *.py,*.pyw,*.c,*.h,*.vim match BadWhitespace /\s\+$/
-
-" for python mode
+" python-mode
 let g:pymode_python = 'python3'
+
+" flag trailing whitespace
+au BufNewFile BufRead *.py,*.pyw,*.c,*.h,*.vim match BadWhitespace /\s\+$/
 
 " :: Mako Templates ::
 au BufNewFile BufRead *.mako set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2
 
 " :: JSON ::
-au BufRead BufNewFile *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-" au BufRead BufNewFile *.json execute '%!python -m json.tool' | w
+au BufNewFile BufRead *.json set ft=json syntax=json tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+" au BufNewFile BufRead *.json execute '%!python -m json.tool' | w
 
 " :: YAML ::
-au! BufRead BufNewFile *.{yaml,yml} set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2 expandtab indentkeys-=<:>
+au BufNewFile BufRead *.{yaml,yml} set ft=yaml syntax=yaml tabstop=2 shiftwidth=2 softtabstop=2 expandtab indentkeys-=<:>
 
 " :: jinja ::
-au BufRead BufNewFile *.jinja,*.jinja2 set ft=python syntax=python
+au BufNewFile BufRead *.jinja,*.jinja2 set ft=python syntax=python
 
 " Per default, netrw leaves unmodified buffers open. This autocommand
 " deletes netrw's buffer once it's hidden (using ':q', for example)
 autocmd FileType netrw setl bufhidden=delete
 
 " Run buffer in python using F9
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
 
 " watch me for the changes and re-source file
 augroup reload_file " {
