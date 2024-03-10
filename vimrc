@@ -26,7 +26,9 @@ Plugin 'Yggdroot/indentLine'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+" python-mode
 filetype indent plugin on    " required
+let g:pymode_python = 'python3'
 
 syntax enable on
 " set leader key
