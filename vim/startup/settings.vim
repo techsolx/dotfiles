@@ -141,9 +141,6 @@ if exists("+undofile")
   set undofile
 endif
 
-" python-mode
-let g:pymode_python = 'python3'
-
 " flag trailing whitespace
 au BufNewFile BufRead *.py,*.pyw,*.c,*.h,*.vim match BadWhitespace /\s\+$/
 
