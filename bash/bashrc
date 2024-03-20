@@ -5,10 +5,10 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     platform="linux"
 	source_file="/etc/environment"
     if [[ -s $source_file ]]; then # not zero
-        echo "Sourcing $source_file"
+#        echo "Sourcing $source_file"
         source $source_file
     elif source_file="/etc/profile"; then # Debian
-        echo "Sourcing $source_file"
+#        echo "Sourcing $source_file"
         source $source_file
     else
 	    PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
@@ -314,6 +314,11 @@ if [ -f "${SSH_ENV}" ]; then
     }
 else
     start_agent;
+fi
+
+# check/set DISPLAY for ssh client
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ]; then
+    export DISPLAY=:0.0
 fi
 
 # Path Stuff Here
