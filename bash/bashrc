@@ -333,6 +333,16 @@ if [ -d "$HOME/bin" ]; then
     path_append $HOME/bin
 fi
 
+# add path for /opt/build if it exists
+if [ -d "/opt/build" ]; then
+    path_append /opt/build
+fi
+
+# add path for /opt/install if it exists
+if [ -d "/opt/install" ]; then
+    path_append /opt/install
+fi
+
 # add path for $HOME/.local/bin if it exists, pipx requirement
 if [ -d "$HOME/.local/bin" ]; then
     path_append $HOME/.local/bin
