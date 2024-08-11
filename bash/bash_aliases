@@ -31,6 +31,7 @@ alias pyenv-upgrade='cd /home/john/.pyenv/plugins/python-build/../.. && git pull
 alias tf='terraform'
 alias tg='grep -rnI --exclude-dir=\.*'
 alias xr='xrandr --output DP-3 --auto --right-of eDP-1'
+alias xrforce='xrandr --output DP-3 --mode 3840x2160 --right-of eDP-1'
 alias xrbig='xrandr --output eDP-1 --mode 1920x1200'
 alias xrdark='xrandr --output eDP-1 --brightness 0.50'
 alias xrdim='xrandr --output eDP-1 --brightness 0.75'
