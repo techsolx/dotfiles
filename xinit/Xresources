@@ -44,8 +44,8 @@ URxvt.urlLauncher:     /usr/bin/firefox
 URxvt.matcher.button:  1
 
 ! Appearance
-URxvt.font: xft:Inconsolata:size=12:style=Regular
-URxvt.boldFont: xft:Inconsolata:size=12:style=Bold
+URxvt.font: xft:Inconsolata:size=8:style=Regular
+URxvt.boldFont: xft:Inconsolata:size=8:style=Bold
 
 !  - pseudo transparency
 URxvt.shading:    30
