@@ -78,4 +78,4 @@ URxvt.color14:               S_base1
 URxvt.color7:                S_base2
 URxvt.color15:               S_base3
 !! fix hi-res screen
-Xft.dpi: 331
+! Xft.dpi: 340
