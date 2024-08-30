@@ -73,6 +73,19 @@ daz() {
     fi
 }
 
+# curl, follow links. Could use wget but this is how to do it with curl
+fcurl() {
+    if [ "$1" == "-h" ]; then
+        echo "curl and follow links to target_url"
+        echo "Usage: $FUNCNAME target_url"
+        return -1
+    else
+        if [ -x "$(command -v curl)" ]; then
+            curl -Ls -O -w %{url_effective} $1
+        fi
+    fi
+}
+
 # get aws caller identity
 gci() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
@@ -108,7 +121,9 @@ gip() {
 
 # get public ip address
 gpip() {
-    curl https://checkip.amazonaws.com
+    if [ -x "$(command -v curl)" ]; then
+        curl https://checkip.amazonaws.com
+    fi
 }
 
 # list account alias
