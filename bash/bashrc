@@ -81,7 +81,7 @@ fcurl() {
         return -1
     else
         if [ -x "$(command -v curl)" ]; then
-            curl -Ls -O -w %{url_effective} $1
+            curl -Ls -O -w %{url_effective} $1 &> /dev/null
         fi
     fi
 }
