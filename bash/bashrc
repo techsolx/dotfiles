@@ -116,7 +116,7 @@ gst() {
 
 # get local ip addresse(s)
 gip() {
-    ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+    ip address | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
 }
 
 # get public ip address
