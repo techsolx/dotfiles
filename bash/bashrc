@@ -343,6 +343,7 @@ if [[ $platform == "osx" ]]; then
         path_append /Applications/Docker.app/Contents/Resources/bin
     fi
 fi
+
 # add path for $HOME/bin if it exists
 if [ -d "$HOME/bin" ]; then
     path_append $HOME/bin
@@ -351,6 +352,11 @@ fi
 # add path for /opt/build if it exists
 if [ -d "/opt/build" ]; then
     path_append /opt/build
+fi
+
+# add path for /usr/local/sbin if it exists
+if [ -d "/usr/local/sbin" ]; then
+    path_append /usr/local/sbin
 fi
 
 # add path for /opt/install if it exists
