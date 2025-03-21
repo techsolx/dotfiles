@@ -412,6 +412,11 @@ if [ -d "$HOME/go" ]; then
     path_append $GOPATH/bin
 fi
 
+# rust if installed
+if [ -d "$HOME/.cargo" ]; then
+    RUSTPATH="$HOME/.cargo/bin"
+    path_append $RUSTPATH
+fi
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
 if [ -x "$(command -v chef)" ]; then
