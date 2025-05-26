@@ -334,10 +334,11 @@ else
     start_agent;
 fi
 
-# check/set DISPLAY for ssh client
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ]; then
-    export DISPLAY=:0.0
-fi
+## this is breaking x11 remote
+## check/set DISPLAY for ssh client
+#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ]; then
+#    export DISPLAY=:0.0
+#fi
 
 # Path Stuff Here
 # docker cli from docker desktop
