@@ -1,15 +1,40 @@
-alias hg="history | grep"
-alias gr="git remote -v"
-alias gs="git status"
-alias gaa="git add ."
-alias gc="git commit -m "
-alias gb="git branch"
-alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias tg="grep -rn --exclude-dir=.terraform"
-alias tf="terraform"
-alias k="kubectl"
-alias kcc="kubectl config use-context"
-alias kgc="kubectl config get-contexts"
-alias kcs="kubectl config set-context --current"
-alias kgi="kubectl get pods -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c"
-alias kgia="kubectl get pods -A -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c"
+alias clippw='pwgen -cny +20 1 | xclip -selection clipboard -filter'
+alias clipt='xclip -selection clipboard -filter -rmlastnl'
+alias clmap='/usr/bin/setxkmap -option caps:escape'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias gan='aws organizations list-accounts --profile org-read_only | jq'
+alias gl='git log --color --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias grep='grep --color=auto'
+alias hg='history | grep'
+alias kcc='kubectl config use-context'
+alias kcs='kubectl config set-context --current'
+alias kgcert='k get clusterissuer,certificate,certificaterequest,challenges,orders'
+alias kgc='kubectl config get-contexts'
+alias kgia='kubectl get pods -A -o jsonpath={..image} | tr -s '\''[[:space:]]'\'' '\''\n'\'' | sort | uniq -c'
+alias kgi='kubectl get pods -o jsonpath={..image} | tr -s '\''[[:space:]]'\'' '\''\n'\'' | sort | uniq -c'
+alias k='kubectl'
+alias kprodcc='kubectl --kubeconfig ~/.kube/prod-config config use-context'
+alias kprodcs='kubectl --kubeconfig ~/.kube/prod-config config set-context --current'
+alias kprodgcert='kubectl --kubeconfig ~/.kube/prod-config get clusterissuer,certificate,certificaterequest,challenges,orders'
+alias kprodgc='kubectl --kubeconfig ~/.kube/prod-config config get-contexts'
+alias kprodgia='kubectl--kubeconfig ~/.kube/prod-config get pods -A -o jsonpath={..image} | tr -s '\''[[:space:]]'\'' '\''\n'\'' | sort | uniq -c'
+alias kprodgi='kubectl --kubeconfig ~/.kube/prod-config get pods -o jsonpath={..image} | tr -s '\''[[:space:]]'\'' '\''\n'\'' | sort | uniq -c'
+alias kprod='kubectl --kubeconfig ~/.kube/prod-config'
+alias kprod-unset='kprod config unset current-context'
+alias k-unset='kubectl config unset current-context'
+alias la='ls -A'
+alias ll='ls -alF'
+alias l='ls -CF'
+alias ls='ls --color=auto'
+alias mk='microk8s kubectl'
+alias pw=''
+alias pyenv-upgrade='cd /home/john/.pyenv/plugins/python-build/../.. && git pull && cd -'
+alias tf='terraform'
+alias tg='grep -rnI --exclude-dir=\.*'
+alias xrbig='xrandr --output eDP-1 --mode 1920x1200'
+alias xrdark='xrandr --output eDP-1 --brightness 0.50'
+alias xrdim='xrandr --output eDP-1 --brightness 0.75'
+alias xrforce='xrandr --output DP-3 --mode 3840x2160 --right-of eDP-1'
+alias xrnormal='xrandr --output eDP-1 --auto'
+alias xr='xrandr --output DP-3 --auto --right-of eDP-1'

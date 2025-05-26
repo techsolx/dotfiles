@@ -1,21 +1,44 @@
-# Check for os type
+#!/bin/bash
+
+# Check for OS type reset and source default path using source_file
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # linux
-    platform='linux'
-    PATH=""
-    source /etc/environment
+    platform="linux"
+	source_file="/etc/environment"
+    if [[ -s $source_file ]]; then # not zero
+#        echo "Sourcing $source_file"
+        source $source_file
+    elif source_file="/etc/profile"; then # Debian
+#        echo "Sourcing $source_file"
+        source $source_file
+    else
+	    PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+	fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # Mac OSX
-    platform='osx'
+    platform="osx"
     PATH=""
-    source /etc/profile
-elif [[ "$OSTYPE" == "freebsd"* ]]; then
-    # freebsd
-    platform='freebsd'
+    source "/etc/profile"
 fi
 
-# functions to change path
-# [[ ":$PATH:" != *":$HOME/bin:"* ]] && path_prepend $HOME/bin
+## No source_file found, or the above broke the path, set some default
+# if [[ ${#PATH} == "0" ]]; then
+#   PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# fi
+
+# distinguish machine arch
+get_machine_arch() {
+    machine_arch=""
+    case $(uname -m) in
+        i386)     machine_arch="386" ;;
+        i686)     machine_arch="386" ;;
+        x86_64)   machine_arch="amd64" ;;
+        arm64)    machine_arch="arm64" ;;
+        aarch64)  dpkg --print-architecture | grep -q "arm64" && machine_arch="arm64" || machine_arch="arm" ;;
+    esac
+    echo $machine_arch
+}
+arch=$(get_machine_arch)
+
+# functions to modify path
 path_prepend() {
     for arg in "$@"; do
         if [[ ":${PATH}:" != *":${arg}:"* ]]; then
@@ -23,6 +46,7 @@ path_prepend() {
         fi
     done
 }
+
 path_append() {
     for arg in "$@"; do
         if [[ ":${PATH}:" != *":${arg}:"* ]]; then
@@ -31,8 +55,7 @@ path_append() {
     done
 }
 
-# Allow user to set aws profile in env
-# requires aws and jq
+# Allow user to set aws profile in env requires aws and jq
 # assume working role
 awr() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
@@ -50,6 +73,19 @@ daz() {
     fi
 }
 
+# curl, follow links. Could use wget but this is how to do it with curl
+fcurl() {
+    if [ "$1" == "-h" ]; then
+        echo "curl and follow links to target_url"
+        echo "Usage: $FUNCNAME target_url"
+        return -1
+    else
+        if [ -x "$(command -v curl)" ]; then
+            curl -Ls -O -w %{url_effective} $1 &> /dev/null
+        fi
+    fi
+}
+
 # get aws caller identity
 gci() {
     if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
@@ -58,14 +94,36 @@ gci() {
     fi
 }
 
+# get session token
+gst() {
+    if [ -x "$(command -v jq)" ] && [ -x "$(command -v aws)" ]; then
+        if [ -z "${PROFILE}" ] && [ -z ${1} ]; then
+            echo "Usage is gst PROFILE"
+            return -1
+        else
+            PROFILE=$1
+            ARN=$(aws configure get role_arn --profile $PROFILE)
+            AWS_CREDS=$(aws sts assume-role --role-arn $ARN --role-session-name session --profile $PROFILE)
+            export AWS_PROFILE=$1
+            export AWS_ACCESS_KEY_ID=$(echo $AWS_CREDS | jq -r ".Credentials.AccessKeyId")
+            export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDS | jq -r ".Credentials.SecretAccessKey")
+            export AWS_SESSION_TOKEN=$(echo $AWS_CREDS | jq -r ".Credentials.SessionToken")
+        fi
+        echo "aws sts get-caller-identity: "
+        aws sts get-caller-identity | jq .Arn
+    fi
+}
+
 # get local ip addresse(s)
 gip() {
-    ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+    ip address | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
 }
 
 # get public ip address
 gpip() {
-    curl https://checkip.amazonaws.com
+    if [ -x "$(command -v curl)" ]; then
+        curl https://checkip.amazonaws.com
+    fi
 }
 
 # list account alias
@@ -104,7 +162,7 @@ for key in conn.list_objects(Bucket='${1}')['Contents']:
 }
 
 # make and change to directory
-mkcdir () {
+mkcdir() {
     mkdir -p -- "$1" &&
         cd -P -- "$1"
 }
@@ -165,7 +223,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # Set prompts
-if [[ $platform != 'osx' ]]; then
+if [[ $platform != "osx" ]]; then
     if [ "$color_prompt" = yes ]; then
         PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     else
@@ -174,7 +232,7 @@ if [[ $platform != 'osx' ]]; then
     unset color_prompt force_color_prompt
 fi
 
-if [[ $platform == 'osx' ]]; then
+if [[ $platform == "osx" ]]; then
     if [ "$color_prompt" = yes ]; then
         CLICOLOR=1
         LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # solarized
@@ -205,35 +263,52 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+source  ~/.bash_aliases
 
 # some more ls aliases, use these even if bash_alias is missing
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# trying to fix colors in tmux on OSX
-# alias tmux="TERM=screen-256color tmux"
-
-# some osx stuff...
-if [[ $platform == 'osx' ]]; then
-    alias ic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-    alias ls='ls -G'
-    path_append /usr/local/opt/openssl/bin
-
-    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-    source <(kubectl completion bash)
-    complete -F __start_kubectl k
+# some osx stuff...like bash_completion
+if [[ $platform == "osx" ]]; then
+    alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs"
 fi
 
-#bash-completion
-if [[ $platform == 'linux' ]]; then
+# brew install location changed for m1 vs intel
+if [[ $platform == "osx" ]] && [[ $arch == "arm64" ]]; then
+    if [[ -d "/opt/homebrew" ]]; then
+        HOMEBREW_PREFIX="$(/opt/homebrew/bin/brew --prefix)"
+    fi
+fi
+if [[ $platform == "osx" ]] && [[ $arch != "arm64" ]]; then
+    if [[ -d "/usr/local/Homebrew" ]]; then
+        HOMEBREW_PREFIX="$(/usr/local/Homebrew/bin/brew --prefix)"
+    fi
+fi
+if [[ $HOMEBREW_PREFIX ]]; then
+    path_prepend $HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin
+    if [ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]; then
+        . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+    fi
+    # get osx git-completion working via this hack!
+    if [ -r "$HOME/.git-completion.bash" ]; then
+        . "$HOME/.git-completion.bash"
+    fi
+fi
+
+#bash-completion for normal system
+if [[ $platform == "linux" ]]; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
     fi
+fi
+
+#kubectl bash completion
+if [ -x "$(command -v kubectl)" ]; then
+    source <(kubectl completion bash)
+    complete -F __start_kubectl k
+    complete -F __start_kubectl kprod
 fi
 
 # ssh-agent so I don't have to keep typing my passphrase
@@ -259,9 +334,42 @@ else
     start_agent;
 fi
 
+# check/set DISPLAY for ssh client
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ]; then
+    export DISPLAY=:0.0
+fi
+
+# Path Stuff Here
+# docker cli from docker desktop
+if [[ $platform == "osx" ]]; then
+    if [[ -d "/Applications/Docker.app/Contents/Resources/bin" ]]; then
+        path_append /Applications/Docker.app/Contents/Resources/bin
+    fi
+fi
+
 # add path for $HOME/bin if it exists
 if [ -d "$HOME/bin" ]; then
     path_append $HOME/bin
+fi
+
+# add path for /opt/build if it exists
+if [ -d "/opt/build" ]; then
+    path_append /opt/build
+fi
+
+# add path for /usr/local/sbin if it exists
+if [ -d "/usr/local/sbin" ]; then
+    path_append /usr/local/sbin
+fi
+
+# add path for /opt/install if it exists
+if [ -d "/opt/install" ]; then
+    path_append /opt/install
+fi
+
+# add path for $HOME/.local/bin if it exists, pipx requirement
+if [ -d "$HOME/.local/bin" ]; then
+    path_append $HOME/.local/bin
 fi
 
 # add path for .rbenv if using it
@@ -290,7 +398,6 @@ if [ -d "/opt/inspec/bin" ]; then
 fi
 
 # golang if installed
-
 if [ -d "/usr/local/go" ]; then
     GOPATH="/usr/local/go"
     path_append $GOPATH/bin
@@ -298,13 +405,18 @@ fi
 
 if [ -d "$HOME/go" ]; then
     GOPATH="$HOME/go"
-    if [[ $platform == 'osx' ]]; then
+    if [[ $platform == "osx" ]]; then
         GOROOT="/usr/local/opt/go/libexec" #nonstandard location
         path_append $GOROOT/bin
     fi
     path_append $GOPATH/bin
 fi
 
+# rust if installed
+if [ -d "$HOME/.cargo" ]; then
+    RUSTPATH="$HOME/.cargo/bin"
+    path_append $RUSTPATH
+fi
 # grab the path for the new Chef if chef is installed
 # add ruby gem path for chef if it exists
 if [ -x "$(command -v chef)" ]; then
@@ -316,8 +428,8 @@ if [ -x "$(command -v rbenv)" ]; then
 fi
 
 # kubectl auto completion
-complete -F __start_kubectl k
 if [ -x "$(command -v kubectl)" ]; then
+    complete -F __start_kubectl k
     source <(kubectl completion bash);
 fi
 
@@ -392,33 +504,58 @@ else
     RESET="\033[m"
 fi
 
-parse_git_dirty () {
+parse_git_dirty() {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
 }
-parse_git_branch () {
+parse_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
 k8s_info() {
-      k8s_current_context=$(kubectl config current-context 2> /dev/null)
-        if [[ $? -eq 0 ]] ; then echo -e "(${k8s_current_context}) "; fi
+      k8s_current_context=$(kubectl --kubeconfig ~/.kube/prod-config config current-context 2> /dev/null)
+        if [[ $? -eq 0 ]] ; then
+            echo -e "(${k8s_current_context}) "
+        else
+            echo -en "\033[1A"
+        fi
     }
 
-#PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\n\[$YELLOW\]\$(k8s_info)\n\[$BASE0\]\t $ \[$RESET\]"
-PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\[$BASE0\]\t $ \[$RESET\]"
+PS1="\[${BOLD}${CYAN}\]\u\[$BASE0\]@\[$CYAN\]\h\[$BASE0\]/\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\n\[$YELLOW\]\$(k8s_info)\n\[$BASE0\]\t $ \[$RESET\]"
+
+# asdf stuff
+if [[ -x "$(command -v asdf)" ]]; then
+    if [[ $platform == "osx" && "$(command -v brew)" ]]; then
+        . $(brew --prefix asdf)/libexec/asdf.sh
+        . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+    fi
+    if [[ $platform == "linux" ]]; then
+        . $HOME/.asdf/asdf.sh
+        . $HOME/.asdf/completions/asdf.bash
+    fi
+fi
 
 # export gpg tty
 GPG_TTY=$(tty)
 export GPG_TTY
 
+#set XDG_CONFIG_HOME
+if [[ $platform == "linux" ]]; then
+    XDG_CONFIG_HOME="$HOME/.config"
+    export XDG_CONFIG_HOME
+fi
+
 # remap caps lock to something useful, if a keyboard is installed
-if [[ $platform == 'linux' ]] && [[ "$(command -v lausb)" ]]; then
+if [[ $platform == "linux" ]] && [[ "$(command -v lsusb)" ]]; then
     setxkbmap -option caps:escape
 fi
 
 # setup rbenv
-eval "$(rbenv init -)"
+if [[ "$(command -v rbenv)" ]]; then
+    eval "$(rbenv init -)"
+fi
 
 # setup pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [[ "$(command -v pyenv)" ]]; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
