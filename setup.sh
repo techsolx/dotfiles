@@ -36,60 +36,48 @@ echo "...done"
 #ToDo: dry this up!
 # move any existing vimfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $vimfiles; do
-    if [ -f file ]; then
-        echo "Moving any existing dotfiles from ~ to $olddir"
-        mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $dir/$file ~/.$file
-    fi
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $dir/$file ~/.$file
 done
 
 # move any existing Xinit in homedir to dotfiles_old directory, then create symlinks
 for file in $Xinit; do
-    if [ -f file ]; then
-        echo "Moving any existing dotfiles from ~ to $olddir"
-        mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $Xinitdir/$file ~/.$file
-    fi
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $Xinitdir/$file ~/.$file
 done
 
 # move any existing bashfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $bashfiles; do
-    if [ -f file ]; then
-        echo "Moving any existing dotfiles from ~ to $olddir"
-        mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $bashdir/$file ~/.$file
-    fi
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $bashdir/$file ~/.$file
 done
 
 # tmux files
 for file in $tmuxfiles; do
-    if [ -f file ]; then
-        echo "Moving any existing dotfiles from ~ to $olddir"
-        mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $tmuxdir/$file ~/.$file
-    fi
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $tmuxdir/$file ~/.$file
 done
 
 # git files
 for file in $gitfiles; do
-    if [ -f file ]; then
-        echo "Moving any existing dotfiles from ~ to $olddir"
-        mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $gitdir/$file ~/.$file
-    fi
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $gitdir/$file ~/.$file
 done
 
 # Now do ctags the long way
 for file in $ctagsfile; do
-    if [ -f file ]; then
-        echo "Moving any existing dotfiles from ~ to $olddir"
-        mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $dir/$file ~/.$file
-    fi
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    mv ~/.$file ~/dotfiles_old/
+    echo "Creating symlink to $file in home directory."
+    ln -s $dir/$file ~/.$file
 done
