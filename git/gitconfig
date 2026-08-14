@@ -20,4 +20,3 @@
 [pull]
 	ff = true
 [commit]
-	gpgsign = true
