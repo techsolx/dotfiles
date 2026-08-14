@@ -560,3 +560,7 @@ if [[ "$(command -v pyenv)" ]]; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
+
+#start up tmux
+#https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux/43604#306165
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
