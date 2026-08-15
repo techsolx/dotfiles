@@ -561,6 +561,8 @@ if [[ "$(command -v pyenv)" ]]; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
-#start up tmux
+#start up tmux, if inside an x sesssion, otherwise it's tough to use the `startx` command.
 #https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux/43604#306165
-[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+if [[ $DISPLAY ]]; then
+    [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+fi
