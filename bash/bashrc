@@ -561,6 +561,11 @@ if [[ "$(command -v pyenv)" ]]; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+# setup rust env
+if [ -f $HOME/.cargo/env ]; then
+    . "$HOME/.cargo/env"
+fi
+
 #start up tmux, if inside an x sesssion, otherwise it's tough to use the `startx` command.
 #https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux/43604#306165
 if [[ $DISPLAY ]]; then
